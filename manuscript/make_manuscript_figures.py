@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from matplotlib.patches import Circle, Ellipse, Polygon, Rectangle
-from PIL import Image
+from PIL import Image, ImageEnhance, ImageFilter
 
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -18,6 +18,7 @@ OUT = ROOT / "figures"
 OUT.mkdir(exist_ok=True)
 RENDERED_PAPER_STRUCTURES = OUT / "_paper_structure_panels"
 RENDERED_PAPER_STRUCTURES.mkdir(exist_ok=True)
+PAPER_RENDER_DPI = 1440
 
 plt.rcParams.update({
     "font.family": "DejaVu Sans",
@@ -59,7 +60,7 @@ REFERENCE_STRUCTURE_PNGS = {
 def paper_structure_panel(key):
     """Return a high-resolution rendering of the original paper structure panel."""
     pdf = PAPER_STRUCTURE_PDFS[key]
-    out = RENDERED_PAPER_STRUCTURES / f"{key}.png"
+    out = RENDERED_PAPER_STRUCTURES / f"{key}_{PAPER_RENDER_DPI}dpi.png"
     if shutil.which("pdftocairo") and (
         not out.exists() or out.stat().st_mtime < pdf.stat().st_mtime
     ):
@@ -69,7 +70,7 @@ def paper_structure_panel(key):
                 "-png",
                 "-singlefile",
                 "-r",
-                "720",
+                str(PAPER_RENDER_DPI),
                 str(pdf),
                 str(out.with_suffix("")),
             ],
@@ -92,7 +93,7 @@ def scale_box_to_paper_panel(key, box):
 
 
 def crop_paper_image(key, box):
-    return crop_image(paper_structure_panel(key), scale_box_to_paper_panel(key, box))
+    return crop_image(paper_structure_panel(key), scale_box_to_paper_panel(key, box), sharpen=True)
 
 
 def motif_cutout_from_paper(key, box, flip_vertical=True, flip_horizontal=False):
@@ -101,6 +102,7 @@ def motif_cutout_from_paper(key, box, flip_vertical=True, flip_horizontal=False)
         scale_box_to_paper_panel(key, box),
         flip_vertical=flip_vertical,
         flip_horizontal=flip_horizontal,
+        sharpen=True,
     )
 
 
@@ -143,7 +145,7 @@ def make_rosetta_stone():
     for i, (species, title, role, panel_key) in enumerate(species_info):
         ax_img = fig.add_subplot(gs[i, 0])
         img = plt.imread(paper_structure_panel(panel_key))
-        ax_img.imshow(img)
+        ax_img.imshow(img, interpolation="none")
         ax_img.set_axis_off()
         ax_img.set_title(f"{title}: {role}", loc="left", fontsize=8.6, pad=2)
         if i == 0:
@@ -268,7 +270,7 @@ def make_rosetta_pair_figure():
             y0, y1 = max(0, yy.min() - pad), min(cutout.shape[0], yy.max() + pad + 1)
             x0, x1 = max(0, xx.min() - pad), min(cutout.shape[1], xx.max() + pad + 1)
             cutout = cutout[y0:y1, x0:x1]
-        ax_struct.imshow(cutout)
+        ax_struct.imshow(cutout, interpolation="none")
         ax_struct.set_axis_off()
         ax_struct.set_title(
             f"motif {pair['species']}",
@@ -331,11 +333,28 @@ def make_rosetta_pair_figure():
     savefig(fig, "fig1_rosetta_pairs")
 
 
-def crop_image(path, box):
-    return np.asarray(Image.open(path).convert("RGB").crop(box))
+def sharpen_rgb(image):
+    """Recover crispness after rendering Photoshop-PDF structure panels."""
+    image = image.convert("RGB")
+    image = ImageEnhance.Sharpness(image).enhance(1.65)
+    image = ImageEnhance.Contrast(image).enhance(1.08)
+    return image.filter(ImageFilter.UnsharpMask(radius=1.0, percent=95, threshold=3))
 
 
-def motif_cutout(path, box, flip_vertical=True, flip_horizontal=False):
+def sharpen_rgba(image):
+    rgb = sharpen_rgb(image.convert("RGB"))
+    alpha = image.getchannel("A")
+    return Image.merge("RGBA", (*rgb.split(), alpha))
+
+
+def crop_image(path, box, sharpen=False):
+    image = Image.open(path).convert("RGB").crop(box)
+    if sharpen:
+        image = sharpen_rgb(image)
+    return np.asarray(image)
+
+
+def motif_cutout(path, box, flip_vertical=True, flip_horizontal=False, sharpen=False):
     img = Image.open(path).convert("RGBA").crop(box)
     if flip_vertical:
         img = img.transpose(Image.Transpose.FLIP_TOP_BOTTOM)
@@ -396,12 +415,14 @@ def motif_cutout(path, box, flip_vertical=True, flip_horizontal=False):
             xx = np.fromiter((p[1] for p in coords), dtype=int)
             area = len(coords)
             has_water_oxygen = np.any(red_like[yy, xx])
-            if has_water_oxygen or area > 650:
+            if has_water_oxygen:
                 keep[yy, xx] = True
 
     remove = visible & ~keep
     arr[:, :, 3][remove] = 0
     arr[:, :, :3][remove] = 255
+    if sharpen:
+        arr = np.asarray(sharpen_rgba(Image.fromarray(arr)))
     return arr
 
 
@@ -462,14 +483,14 @@ def make_layer_rosetta_figure():
         color = col["color"]
 
         ax_struct = fig.add_subplot(gs[0, j])
-        ax_struct.imshow(crop_paper_image(col["panel"], structure_boxes[species]))
+        ax_struct.imshow(crop_paper_image(col["panel"], structure_boxes[species]), interpolation="none")
         ax_struct.set_axis_off()
         ax_struct.set_title(f"{col['title']}\n{col['subtitle']}", fontsize=10.0, pad=4)
         if j == 0:
             panel_label(ax_struct, "a")
 
         ax_orient = fig.add_subplot(gs[1, j])
-        ax_orient.imshow(crop_paper_image(col["panel"], orient_boxes[species]))
+        ax_orient.imshow(crop_paper_image(col["panel"], orient_boxes[species]), interpolation="none")
         ax_orient.set_axis_off()
         for cx, cy, width, height, angle in col["ellipses"]:
             ax_orient.add_patch(
@@ -668,7 +689,7 @@ def make_layer_model_figure():
             flip_vertical=True,
             flip_horizontal=layer["flip_horizontal"],
         )
-        ax.imshow(cutout, extent=layer["extent"], interpolation="lanczos", zorder=10)
+        ax.imshow(cutout, extent=layer["extent"], interpolation="none", zorder=10)
 
     hbonds = [
         {
