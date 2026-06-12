@@ -1,0 +1,230 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{pdflscape}
+\usepackage{amsmath}
+\usepackage[version=4]{mhchem}
+\usepackage{siunitx}
+\usepackage{url}
+\usepackage{xspace}
+
+\graphicspath{{../figures/}{../si_figures/}}
+\renewcommand{\thefigure}{S\arabic{figure}}
+\renewcommand{\thetable}{S\arabic{table}}
+\newcommand{\waterair}{water--air\xspace}
+\newcommand{\sfg}{SFG\xspace}
+\newcommand{\imchi}{\ensuremath{\mathrm{Im}\,\chi^{(2)}}\xspace}
+
+\title{\textbf{Supplementary Material}\\
+Elucidating the buried silica/water interface with a water--air SFG Rosetta stone}
+\author{Jen{\'e}e D. Cyran and Thomas D. K{\"u}hne}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{Overview}
+
+This Supplementary Material collects the numerical diagnostics behind the structural assignment in the main text. The purpose is to separate three levels of evidence: (i) high-quality phenomenological reproduction of the measured complex \ce{SiO2}/water spectrum, (ii) transfer of the species-resolved \waterair fingerprints into selected spectral windows, and (iii) model selection among layer-populated water structures. The reference curve for the structural fits is a 17-point moving-average-smoothed version of the digitized experimental imaginary spectrum, stored as \path{imag_smooth} or \path{imag_exp_smooth}; it is not the fitted phenomenological resonance curve \path{imag_fit}. All water-structure fits use nonnegative weights, a floating linear baseline, a global frequency shift, and a global sign convention. The sign is bookkeeping for comparing digitized fingerprints; the structural interpretation follows the experimental convention used in the main text, where positive \imchi corresponds to OH/H orientation toward \ce{SiO2}.
+
+\section*{Complex Spectrum Reproduction}
+
+\begin{table}[h]
+\centering
+\caption{Phenomenological complex line-shape fits to the digitized phase-resolved \ce{SiO2}/water spectrum. These fits reproduce the spectrum but are not used as direct population analyses.}
+\begin{tabular}{lcccccc}
+\toprule
+case & window / \si{cm^{-1}} & resonances & $R^2_\mathrm{complex}$ & $R^2_\mathrm{Im}$ & $R^2_\mathrm{Re}$ & SSE \\
+\midrule
+full & 3300--3800 & 14 & 0.9898 & 0.9830 & 0.9929 & 0.002035 \\
+clean & 3350--3800 & 10 & 0.9952 & 0.9933 & 0.9963 & 0.000586 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.82\textwidth]{figS1_high_quality_full_3300_3800_fit}
+\caption{High-quality complex line-shape reproduction in the full nominal \SIrange{3300}{3800}{cm^{-1}} OH-stretch window. The low-frequency edge is treated phenomenologically and not assigned to a unique water motif.}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.82\textwidth]{figS2_high_quality_clean_3350_3800_fit}
+\caption{High-quality complex line-shape reproduction after excluding the most problematic lower edge of the spectrum.}
+\end{figure}
+
+\clearpage
+
+\section*{Fingerprint Window Scan}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.86\textwidth]{figS3_window_scan}
+\caption{Scan of transferred \waterair fingerprint fits as a function of lower and upper frequency window. The \SIrange{3400}{3800}{cm^{-1}} window is the most stable structural-transfer window for the layer-populated model.}
+\end{figure}
+
+\begin{landscape}
+\begin{table}
+\centering
+\scriptsize
+\caption{Window scan for nonnegative \waterair fingerprint fits. The model labels describe the allowed motif pool; the active species are the motifs that retain nonzero weight after fitting.}
+\begin{tabular}{lllp{3.3cm}rrrrr}
+\toprule
+window / \si{cm^{-1}} & model & active motifs & interpretation & $R^2$ & SSE & shift / \si{cm^{-1}} & sign & $p$ vs background \\
+\midrule
+3300--3800 & minimal & I,VII,VIII & L1A plus L2 only & 0.6512 & 0.022169 & -37 & -1 & $3.43\times10^{-82}$ \\
+3300--3800 & bridge\_ii\_vi\_pool & I,VI,VII,VIII & L1A plus bridge pool plus L2 & 0.6442 & 0.022615 & -35 & -1 & $1.19\times10^{-78}$ \\
+3300--3800 & bridge\_plus\_iv & I,VI,VII,VIII & added IV; zero additional weight & 0.6442 & 0.022615 & -35 & -1 & $1.19\times10^{-78}$ \\
+3300--3800 & bridge\_plus\_iii\_v & I,VI,VII,VIII & added III/V; zero additional weight & 0.6442 & 0.022615 & -35 & -1 & $1.19\times10^{-78}$ \\
+3300--3800 & flexible\_l1b & I,VI,VII,VIII & flexible L1B control & 0.6442 & 0.022615 & -35 & -1 & $1.19\times10^{-78}$ \\
+3300--3800 & unconstrained & VII,VIII & no layer-population requirement & 0.6774 & 0.020504 & -52 & -1 & $7.69\times10^{-93}$ \\
+\midrule
+3350--3800 & minimal & I,VII & L1A plus one L2 motif & 0.8717 & 0.005541 & +32 & +1 & $1.49\times10^{-36}$ \\
+3350--3800 & bridge\_ii\_vi\_pool & I,VI,VIII & L1A plus bridge pool plus L2 & 0.8592 & 0.006080 & -80 & +1 & $1.36\times10^{-25}$ \\
+3350--3800 & bridge\_plus\_iv & I,VI,VIII & added IV; zero additional weight & 0.8592 & 0.006080 & -80 & +1 & $1.36\times10^{-25}$ \\
+3350--3800 & bridge\_plus\_iii\_v & I,VI,VIII & added III/V; zero additional weight & 0.8592 & 0.006080 & -80 & +1 & $1.36\times10^{-25}$ \\
+3350--3800 & flexible\_l1b & I,IV,VII & flexible L1B control & 0.8775 & 0.005288 & -69 & -1 & $1.63\times10^{-40}$ \\
+3350--3800 & unconstrained & VI,VII & no layer-population requirement & 0.9464 & 0.002316 & +80 & +1 & $1.72\times10^{-130}$ \\
+\midrule
+3400--3800 & minimal & I,VIII & reduced L1/L3 scaffold & 0.9703 & 0.000997 & -28 & +1 & $3.79\times10^{-151}$ \\
+3400--3800 & bridge\_ii\_vi\_pool & I,II,VIII & preferred L1/L2/L3 scaffold & 0.9720 & 0.000942 & -25 & +1 & $5.17\times10^{-155}$ \\
+3400--3800 & bridge\_plus\_iv & I,II,VIII & IV allowed; zero additional weight & 0.9720 & 0.000942 & -25 & +1 & $5.17\times10^{-155}$ \\
+3400--3800 & bridge\_plus\_iii\_v & I,II,VIII & III/V allowed; zero additional weight & 0.9720 & 0.000942 & -25 & +1 & $5.17\times10^{-155}$ \\
+3400--3800 & flexible\_l1b & I,II,VIII & flexible L1B control & 0.9720 & 0.000942 & -25 & +1 & $5.17\times10^{-155}$ \\
+3400--3800 & unconstrained & I,II & no L3 requirement & 0.9707 & 0.000984 & -25 & +1 & $1.94\times10^{-152}$ \\
+\midrule
+3350--3700 & minimal & I,VII & L1A plus one L2 motif & 0.8872 & 0.002894 & +22 & +1 & $8.96\times10^{-82}$ \\
+3350--3700 & bridge\_ii\_vi\_pool & I,II,VII & L1A plus bridge pool plus L2 & 0.8614 & 0.003558 & +36 & +1 & $3.60\times10^{-63}$ \\
+3350--3700 & bridge\_plus\_iv & I,II,VII & IV allowed; zero additional weight & 0.8614 & 0.003558 & +36 & +1 & $3.60\times10^{-63}$ \\
+3350--3700 & bridge\_plus\_iii\_v & I,II,VII & III/V allowed; zero additional weight & 0.8614 & 0.003558 & +36 & +1 & $3.60\times10^{-63}$ \\
+3350--3700 & flexible\_l1b & I,V,VII & flexible L1B control & 0.9052 & 0.002435 & +75 & +1 & $5.41\times10^{-95}$ \\
+3350--3700 & unconstrained & VI,VII & no layer-population requirement & 0.9136 & 0.002218 & +80 & +1 & $3.40\times10^{-104}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{landscape}
+
+\section*{Clean-Window Model Alternatives}
+
+\begin{table}[h]
+\centering
+\caption{Direct comparison of the near-degenerate \SIrange{3400}{3800}{cm^{-1}} clean-window fits.}
+\begin{tabular}{llcccp{4.0cm}}
+\toprule
+model & active motifs & $R^2$ & SSE & shift / \si{cm^{-1}} & structural limitation \\
+\midrule
+minimal & I,VIII & 0.9703 & 0.000997 & -28 & L2 bridge layer absent \\
+preferred & I,II,VIII & 0.9720 & 0.000942 & -25 & layer-populated L1--L2--L3 topology \\
+unconstrained & I,II & 0.9707 & 0.000984 & -25 & deeper H-bonded L3 layer absent \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The preferred I+II+VIII model is therefore not a unique algebraic decomposition of the spectrum. It is preferred because it is the best clean-window layer-populated model and because it preserves a hydrogen-bonded L1--L2--L3 topology. The incremental gain relative to I+VIII is modest ($\Delta R^2=0.00163$, $\Delta\mathrm{SSE}=5.49\times10^{-5}$) but statistically resolved in an approximate nested F test ($F=25.5$, $p=6.5\times10^{-7}$, one added structural weight). The F test is diagnostic rather than strict because the nonnegative weights and global frequency shift are reoptimized.
+
+\begin{figure}[h]
+\centering
+\begin{minipage}{0.32\textwidth}
+\centering
+\includegraphics[width=\linewidth]{figS4a_3400_minimal}
+\end{minipage}
+\begin{minipage}{0.32\textwidth}
+\centering
+\includegraphics[width=\linewidth]{figS4b_3400_preferred}
+\end{minipage}
+\begin{minipage}{0.32\textwidth}
+\centering
+\includegraphics[width=\linewidth]{figS4c_3400_unconstrained}
+\end{minipage}
+\caption{Representative \SIrange{3400}{3800}{cm^{-1}} clean-window fits. Left: reduced I+VIII scaffold. Middle: preferred I+II+VIII layer-populated scaffold. Right: unconstrained I+II fit, which is numerically similar but lacks the deeper L3 motif.}
+\end{figure}
+
+\begin{table}[h]
+\centering
+\caption{RMS-normalized fingerprint fractions for the \SIrange{3400}{3800}{cm^{-1}} clean-window alternatives.}
+\begin{tabular}{lccc}
+\toprule
+motif & I+VIII minimal & I+II+VIII preferred & I+II unconstrained \\
+\midrule
+I & 0.4616 & 0.3752 & 0.3376 \\
+II & 0 & 0.3947 & 0.6624 \\
+III & 0 & 0 & 0 \\
+IV & 0 & 0 & 0 \\
+V & 0 & 0 & 0 \\
+VI & 0 & 0 & 0 \\
+VII & 0 & 0 & 0 \\
+VIII & 0.5384 & 0.2301 & 0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\clearpage
+
+\section*{Edge-Sensitive and Forced-Bridge Controls}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.78\textwidth]{figS5_3300_bridge_pool}
+\caption{Layer-populated paper-fingerprint fit over the full \SIrange{3300}{3800}{cm^{-1}} window. The fit quality drops to $R^2\approx0.64$, showing that the lower edge is not cleanly described by transferred water fingerprints alone.}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.78\textwidth]{figS6_3350_3800_bridge_pool}
+\caption{Bridge-pool fit over \SIrange{3350}{3800}{cm^{-1}}. This intermediate window improves relative to the full nominal window but remains more sensitive to edge effects than the \SIrange{3400}{3800}{cm^{-1}} fit.}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.78\textwidth]{figS7_3350_3700_bridge_pool}
+\caption{Bridge-pool fit over \SIrange{3350}{3700}{cm^{-1}}. The reduced upper bound changes the selected L2 motif and illustrates the sensitivity of the inversion to window definition.}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.78\textwidth]{figS8_forced_ii_vi}
+\caption{Control fit in which both II and VI are forced into the bridge layer. This constraint produces a less favorable fit than allowing the bridge pool to select the spectrally supported component.}
+\end{figure}
+
+\section*{Machine-Readable Data Inventory}
+
+The following files contain the numerical data used to generate the main-text and SI figures. They are retained in the public project repository at \url{https://github.com/DCM-Uni-Paderborn/sio2-water-sfg-rosetta} and can be deposited directly as tabular Supporting Information.
+
+\begin{longtable}{p{0.43\textwidth}p{0.49\textwidth}}
+\caption{Core machine-readable output files.}\\
+\toprule
+file & contents \\
+\midrule
+\endfirsthead
+\toprule
+file & contents \\
+\midrule
+\endhead
+\path{paper_sfg_fingerprints_digitized.csv} & Digitized motif-resolved total \imchi fingerprints from the reference \waterair analysis. \\
+\path{sfg_processed.csv} & Processed/digitized \ce{SiO2}/water spectrum used for fitting and plotting. \\
+\path{high_quality_sfg_fit_summary.csv} & Summary statistics for phenomenological complex line-shape fits. \\
+\path{high_quality_full_3300_3800_curve.csv} & Experimental and fitted complex-spectrum curves for the full nominal OH window. \\
+\path{high_quality_full_3300_3800_components.csv} & Resonance components for the full-window complex fit. \\
+\path{high_quality_clean_3350_3800_curve.csv} & Experimental and fitted complex-spectrum curves for the cleaner \SIrange{3350}{3800}{cm^{-1}} window. \\
+\path{paper_fingerprint_window_scan_summary.csv} & Window-scan summary for transferred \waterair fingerprint fits. \\
+\path{paper_window_3400_3800_bridge_pool_curve.csv} & Preferred clean-window I+II+VIII fit curve and component columns. \\
+\path{paper_window_3400_3800_bridge_pool_weights.csv} & Preferred clean-window nonnegative weights and RMS fractions. \\
+\path{paper_window_3400_3800_minimal_curve.csv} & Reduced I+VIII clean-window fit curve. \\
+\path{paper_window_3400_3800_minimal_weights.csv} & Reduced I+VIII clean-window weights. \\
+\path{paper_window_3400_3800_unconstrained_curve.csv} & Unconstrained I+II clean-window fit curve. \\
+\path{paper_window_3400_3800_unconstrained_weights.csv} & Unconstrained I+II clean-window weights. \\
+\path{paper_window_3300_3800_bridge_pool_curve.csv} & Full-window layer-populated paper-fingerprint fit curve. \\
+\path{paper_window_3300_3800_bridge_pool_weights.csv} & Full-window layer-populated paper-fingerprint weights. \\
+\path{paper_fingerprint_staged_fit_summary.csv} & Staged model comparison in the nominal OH window. \\
+\path{paper_fingerprint_staged_fit_report.md} & Human-readable staged-fit report and interpretation notes. \\
+\bottomrule
+\end{longtable}
+
+\end{document}

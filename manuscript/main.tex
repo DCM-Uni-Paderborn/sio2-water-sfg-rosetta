@@ -1,0 +1,122 @@
+\documentclass[aip,jcp,reprint,amsmath,amssymb]{revtex4-2}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage[version=4]{mhchem}
+\usepackage{siunitx}
+\usepackage{xspace}
+
+\graphicspath{{../figures/}}
+
+\newcommand{\waterair}{water--air\xspace}
+\newcommand{\sfg}{SFG\xspace}
+\newcommand{\chis}{\ensuremath{\chi^{(2)}}\xspace}
+\newcommand{\imchi}{\ensuremath{\mathrm{Im}\,\chi^{(2)}}\xspace}
+
+\begin{document}
+
+\title{Elucidating the buried silica/water interface with a water--air SFG Rosetta stone}
+
+\author{Jen{\'e}e D. Cyran}
+\affiliation{Department of Chemistry and Biochemistry, Boise State University, Boise, Idaho 83725, United States}
+
+\author{Thomas D. K{\"u}hne}
+\email{tkuehne@cp2k.org}
+\affiliation{Center for Advanced Systems Understanding (CASUS), 02826 G{\"o}rlitz, Germany}
+\affiliation{Helmholtz-Zentrum Dresden-Rossendorf, 01328 Dresden, Germany}
+\affiliation{Institute of Artificial Intelligence, Technische Universit{\"a}t Dresden, 01069 Dresden, Germany}
+
+\date{\today}
+
+\begin{abstract}
+Phase-resolved vibrational sum-frequency generation (SFG) reports on interfacial water with orientational sensitivity, but converting an OH-stretch spectrum into a molecular structure remains an underdetermined inverse problem. We revisit the buried silica/water spectrum of Cyran \textit{et al.} by using species-resolved water--air SFG fingerprints as a structural Rosetta stone. The transfer is made in the experimental viewing convention, where positive \imchi corresponds to OH/H orientation toward the silica window. A flexible complex line-shape model reproduces the full \SIrange{3300}{3800}{cm^{-1}} spectrum with $R^2_\mathrm{complex}=0.990$ and $R^2_\mathrm{Im}=0.983$, but structural inversion is restricted to the cleaner \SIrange{3400}{3800}{cm^{-1}} water-fingerprint window. There, a nonnegative L1+L2+L3 combination of motifs I, II, and VIII reproduces the measured imaginary response with $R^2=0.972$ and $p=5.2\times10^{-155}$ relative to a linear-background model. Closely related reduced fits are possible, so the assignment is not presented as a unique algebraic decomposition. Rather, I+II+VIII is the minimal model that simultaneously preserves all populated water layers, gives the best clean-window fit, and supports a continuous hydrogen-bond topology. The high-frequency weak-OH feature at silica/water is therefore not an isolated dangling population; it is the spectroscopic end of a hydrogen-bonded interfacial water network.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+Vibrational \sfg spectroscopy is one of the few techniques that can directly access the orientation of water at buried interfaces, but its structural interpretation is rarely local or additive.\cite{Shen2006ChemRev,Bonn2015Angew,Tang2020ChemRev} The measured second-order susceptibility is a coherent response, shaped by orientational selection rules, OH-stretch frequencies, hydrogen-bond topology, vibrational coupling, and phase convention. This makes the inverse problem especially delicate at mineral/water interfaces, where the substrate can impose electrostatic order while also contributing nonresonant and low-frequency optical response.
+
+The amorphous silica/water interface is a particularly useful test case. Cyran and co-workers measured a phase-resolved \sfg spectrum through the silica side and observed positive imaginary OH-stretch features near \SI{3400}{cm^{-1}} and \SI{3660}{cm^{-1}}.\cite{Cyran2019PNAS} In that experimental convention, positive \imchi corresponds to hydrogen atoms pointing toward the negatively charged silica surface. The high-frequency feature was assigned to weakly hydrogen-bonded, quasi-free OH groups pointing toward siloxane bridges, revealing molecular hydrophobicity at a surface that is hydrophilic on macroscopic length scales. What remains less explicit is the water structure that supports this response. Is the \SI{3660}{cm^{-1}} feature an isolated dangling-OH population, or is it a marker embedded in a broader hydrogen-bond network?
+
+Here we address that question by transferring a motif-resolved \waterair SFG dictionary to the buried silica/water geometry. The purpose is not to replace the original silica/water interpretation, but to sharpen it: the \waterair interface provides a set of water structures for which both molecular orientation and total \sfg fingerprint are known. When this dictionary is used with the correct sign convention and with conservative spectral windows, it becomes a practical Rosetta stone for constructing a water-only layer model at the silica/water interface.
+
+\section{Motif Dictionary and Transfer Geometry}
+
+The reference \waterair analysis resolves the outermost water into structural motifs with distinct orientational distributions and computed total \imchi fingerprints.\cite{Kaliannan2026Rosetta} The dilute top layer contains motif I, in which one OH is weakly hydrogen bonded or nearly free while the other remains connected to the liquid. The denser interfacial layer contains bridge and in-plane motifs II--VI. A second water layer contains motifs VII and VIII, whose bonded-OH responses are partially opposed and can cancel. Figure~\ref{fig:rosetta-pairs} displays the full one-to-one dictionary used here: each motif is paired directly with its total \sfg fingerprint from the reference paper.
+
+\begin{figure*}
+  \centering
+  \includegraphics[width=\textwidth]{fig1_rosetta_pairs}
+  \caption{One-to-one Rosetta-stone dictionary from the reference \waterair motif analysis. Each water structure is paired with its digitized total imaginary \sfg fingerprint from the corresponding total-SFG panel. The silica/water analysis selects from this structural-to-spectral dictionary rather than fitting anonymous resonances.}
+  \label{fig:rosetta-pairs}
+\end{figure*}
+
+For the buried-interface model, we relabel the selected depth sequence simply as L1--L3. These labels are deliberately structural rather than metric: the layer order is inherited from the instantaneous interfacial definition of the \waterair analysis and is not converted into arbitrary fixed-thickness slabs. The transfer also requires a sign convention. Because the silica/water spectrum was measured through the silica side, the paper-up direction of the \waterair structures is mapped toward silica, and positive \imchi is interpreted as OH/H orientation toward the \ce{SiO2} side. Figure~\ref{fig:rosetta} shows the three motifs ultimately selected by the clean-window structural fit in this transferred geometry.
+
+\begin{figure*}
+  \centering
+  \includegraphics[width=\textwidth]{fig1_layer_rosetta}
+  \caption{Transfer of selected \waterair motifs to the buried silica/water interface. (a) Water structures are ordered by silica/water depth as L1, L2, and L3, corresponding to paper motifs I, II, and VIII. In the transferred geometry, the paper-up direction points toward the silica side. (b) The same motifs in the $\cos(\tau)$--$\cos(\xi)$ orientation maps. (c) Digitized total imaginary \sfg fingerprints for the selected motifs. The shaded \SIrange{3400}{3800}{cm^{-1}} region is the clean water-fingerprint window used for structural inversion.}
+  \label{fig:rosetta}
+\end{figure*}
+
+\section{Spectral Reproduction and Structural Inversion}
+
+We first separate spectral reproducibility from structural assignment. A flexible complex resonance model, including low-edge nuisance terms, reproduces the full nominal OH-stretch region from \SIrange{3300}{3800}{cm^{-1}} with $R^2_\mathrm{complex}=0.990$ and $R^2_\mathrm{Im}=0.983$ (Fig.~\ref{fig:fit}a). This confirms that the measured line shape is quantitatively reproducible, but it is not a population analysis. In particular, the lower edge of the window includes response that cannot be uniquely assigned to transferred water motifs and should not be over-interpreted as a clean water-structure reporter.
+
+The structural fit is therefore performed against a moving-average-smoothed version of the digitized experimental \imchi curve, not against the phenomenological resonance fit, and is restricted to the \SIrange{3400}{3800}{cm^{-1}} water-fingerprint window. In this interval, a minimal layer-populated model containing L1/motif I, L2/motif II, and L3/motif VIII reproduces the imaginary spectrum with $R^2=0.972$ and $p=5.2\times10^{-155}$ relative to a linear-background model (Fig.~\ref{fig:fit}b,c). The best global frequency shift is \SI{-25}{cm^{-1}}, a modest displacement for transferring a \waterair fingerprint to a buried mineral/water environment.
+
+\begin{figure*}
+  \centering
+  \includegraphics[width=0.88\textwidth]{fig2_sfg_fit}
+  \caption{Reproduction and structural decomposition of the phase-resolved silica/water \sfg spectrum. (a) A flexible complex line-shape model reproduces the full \SIrange{3300}{3800}{cm^{-1}} window; the gray region marks the edge/nuisance response. (b) In the clean water-fingerprint window, the transferred L1+L2+L3 model using motifs I+II+VIII reproduces the measured imaginary spectrum with $R^2=0.972$ and $p=5.2\times10^{-155}$ relative to a linear-background model. (c) Motif contributions to the fitted line shape. The weights are nonnegative \sfg fingerprint weights, not molecule counts.}
+  \label{fig:fit}
+\end{figure*}
+
+The decomposition is structurally constrained but not mathematically unique. A reduced I+VIII scaffold already gives $R^2=0.970$, but leaves the bridge layer empty. An unconstrained I+II fit gives $R^2=0.971$, but leaves the deeper hydrogen-bonded layer absent. Adding motif II to the I+VIII scaffold improves the residual by $\Delta R^2=0.0016$; an approximate nested comparison gives $p=6.5\times10^{-7}$ for this additional structural weight. Thus the evidence for I+II+VIII is cumulative: it is the best clean-window layer-populated fit, it retains a hydrogen-bond path across L1--L3, and it avoids assigning the lower edge of the spectrum to a water motif without sufficient spectral support. The Supporting Information gives the complete window scan, forced-bridge controls, and alternative weights.
+
+\section{Layered Water Model}
+
+The resulting water-only model is shown in Fig.~\ref{fig:model}. L1 is motif-I-like: one OH points toward silica and gives the weak/free-OH marker, while the partner OH remains connected to the liquid. L2 is populated by a motif-II-like bridge that donates a hydrogen bond to the L1 oxygen, linking the weak-OH side to the interfacial hydrogen-bond sheet. L3 is motif-VIII-like and donates a hydrogen bond to L2. The clean-window RMS fingerprint fractions are 0.375 (I), 0.395 (II), and 0.230 (VIII). These values should be read as spectral weights, not molecular populations, because \sfg intensities depend on orientation, vibrational coupling, and coherent interference.
+
+\begin{figure*}
+  \centering
+  \includegraphics[width=0.95\textwidth]{fig3_layer_model}
+  \caption{Water-only layer model on silica. The water motifs are vertically flipped relative to the \waterair representation so that the paper-up direction points toward the silica side in the buried-interface geometry. Only the three selected motifs are shown: L1/motif I supplies the silica-directed weak/free-OH marker, L2/motif II donates a hydrogen bond to the oxygen of L1, and L3/motif VIII donates a hydrogen bond to the oxygen of L2.}
+  \label{fig:model}
+\end{figure*}
+
+This model refines the molecular-hydrophobicity picture of silica/water. The \SI{3660}{cm^{-1}} response remains a silica-directed weakly hydrogen-bonded OH feature, consistent with the original assignment.\cite{Cyran2019PNAS} The additional point is that this high-frequency marker is not structurally isolated. It is the top spectroscopic signature of a connected water network in which a weakly bonded silica-facing OH is backed by bridge water and deeper hydrogen-bonded water. The interface is therefore locally hydrophobic in its exposed OH response while remaining hydrogen-bond continuous underneath.
+
+The lower-frequency side of the spectrum remains important but less structurally specific in the present transfer. When the entire \SIrange{3300}{3800}{cm^{-1}} region is forced to be described only by paper fingerprints, the best layer-populated model contains I, VI, VII, and VIII but reaches only $R^2\approx0.64$. We therefore do not assign the sub-\SI{3400}{cm^{-1}} response uniquely to water orientation. The appearance of motif VI in edge-sensitive controls is nevertheless chemically consistent with a bridge-family L2 layer: motif II is selected by the clean high-frequency fingerprint, whereas VI may represent more deeply connected bridge response when collective lower-frequency contributions are included.
+
+\section{Methods}
+
+The experimental silica/water spectrum was digitized from the phase-resolved \sfg data of Cyran \textit{et al.}\cite{Cyran2019PNAS} The digitized complex spectrum was smoothed by a 17-point moving average for plotting and least-squares stability. Full-window spectral reproduction used a complex Lorentzian line-shape model with resonant terms and low-frequency nuisance terms. Structural fits used species-resolved total \imchi fingerprints digitized from the \waterair motif analysis.\cite{Kaliannan2026Rosetta} Each fingerprint was shifted over a discrete frequency grid and combined by nonnegative least squares with a floating linear baseline. Structural fits were performed against the moving-average-smoothed digitized experimental imaginary spectrum, not against the phenomenological resonance fit. Reported $p$ values are F-test probabilities for residual reduction relative to a linear-background model. All structural weights are RMS-normalized fingerprint contributions.
+
+\section*{Supplementary Material}
+
+See the supplementary material for the complex-spectrum fit diagnostics, fingerprint window scans, clean-window alternative models, forced-bridge controls, RMS-normalized weights, and machine-readable data inventory.
+
+\section*{Author Declarations}
+
+\subsection*{Conflict of Interest}
+
+The authors have no conflicts to disclose.
+
+\subsection*{Author Contributions}
+
+Jen{\'e}e D. Cyran: experimental data, conceptual framing, and interpretation. Thomas D. K{\"u}hne: conceptualization, formal analysis, visualization, and writing.
+
+\section*{Data Availability}
+
+The digitized spectra, transferred fingerprints, fitting scripts, processed output tables, and figure-generation code are available in the public GitHub repository \url{https://github.com/DCM-Uni-Paderborn/sio2-water-sfg-rosetta}.
+
+\bibliographystyle{aipnum4-2}
+\bibliography{references}
+
+\end{document}

@@ -1,0 +1,4 @@
+depth_order_from_sio2,paper_region,allowed_species,selected_species,rms_fraction,structural_interpretation
+1,L1 Region A,I,I,0.009498188967154222,closest SiO2-side analogue of the protruding/free-OH motif; upward in the paper is read as toward SiO2
+2,L1 Region B,"II, III, IV, V, VI",VI,0.021799718839603105,dense interfacial H-bond sheet; includes parallel/coupling-active IV and connector motifs
+3,L2,"VII, VIII","VII, VIII",0.9687020921932428,one layer deeper; oppositely oriented motifs can cancel in the net SFG signal
