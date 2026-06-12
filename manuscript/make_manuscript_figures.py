@@ -128,7 +128,7 @@ def savefig(fig, stem):
 def make_rosetta_stone():
     fp = pd.read_csv(ANALYSIS / "paper_sfg_fingerprints_digitized.csv")
     species_info = [
-        ("I", "L1 / motif I", "weak/free OH toward SiO2", "A"),
+        ("I", "L1 / motif I", r"weak/free OH toward SiO$_2$", "A"),
         ("II", "L2 / motif II", "H-bonded bridge", "B"),
         ("VIII", "L3 / motif VIII", "second-layer H-bonded water", "L2"),
     ]
@@ -188,7 +188,7 @@ def make_rosetta_stone():
             panel_label(ax, "b")
 
     fig.suptitle(
-        "Rosetta-stone transfer: motif -> fingerprint -> buried SiO2/water",
+        r"Rosetta-stone transfer: motif -> fingerprint -> buried SiO$_2$/water",
         fontsize=10.5,
         y=0.995,
     )
@@ -433,7 +433,7 @@ def make_layer_rosetta_figure():
         {
             "species": "I",
             "title": "L1 / motif I",
-            "subtitle": "weak/free OH toward SiO2",
+            "subtitle": r"weak/free OH toward SiO$_2$",
             "panel": "A",
             "color": COLORS["I"],
             "ellipses": [(0.73, 0.55, 0.24, 0.31, -22), (0.32, 0.56, 0.25, 0.32, -28)],
@@ -596,7 +596,7 @@ def make_sfg_fit_figure():
     ax2.text(
         0.98,
         0.80,
-        "L1/I: SiO2-side weak/free OH\nL2/II: H-bond bridge\nL3/VIII: H-bonded water",
+        r"L1/I: SiO$_2$-side weak/free OH" + "\nL2/II: H-bond bridge\nL3/VIII: H-bonded water",
         transform=ax2.transAxes,
         ha="right",
         va="top",
@@ -650,7 +650,7 @@ def make_layer_model_figure():
     ax.set_axis_off()
 
     band_specs = [
-        (1.10, 2.48, COLORS["I"], "L1 / motif I", "weak/free OH toward SiO2"),
+        (1.10, 2.48, COLORS["I"], "L1 / motif I", r"weak/free OH toward SiO$_2$"),
         (2.48, 3.72, COLORS["II"], "L2 / motif II", "H-bond bridge"),
         (3.72, 5.18, COLORS["VIII"], "L3 / motif VIII", "H-bonded water"),
     ]
@@ -744,7 +744,7 @@ def make_layer_model_figure():
         )
 
     ax.annotate(
-        "away from SiO2",
+        r"away from SiO$_2$",
         xy=(0.45, 5.13),
         xytext=(0.45, 1.18),
         arrowprops=dict(arrowstyle="->", color="#404040", lw=1.1),
