@@ -743,16 +743,6 @@ def make_layer_model_figure():
             bbox=dict(boxstyle="round,pad=0.18", facecolor="white", edgecolor=color, lw=0.8, alpha=0.88),
         )
 
-    ax.annotate(
-        r"away from SiO$_2$",
-        xy=(0.45, 5.13),
-        xytext=(0.45, 1.18),
-        arrowprops=dict(arrowstyle="->", color="#404040", lw=1.1),
-        color="#404040",
-        fontsize=8.0,
-        ha="left",
-        va="bottom",
-    )
     ax.text(
         4.05,
         5.50,
