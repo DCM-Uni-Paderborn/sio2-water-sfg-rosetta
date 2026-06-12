@@ -2,6 +2,7 @@ from pathlib import Path
 from collections import deque
 import shutil
 import subprocess
+import tempfile
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -18,7 +19,6 @@ OUT = ROOT / "figures"
 OUT.mkdir(exist_ok=True)
 RENDERED_PAPER_STRUCTURES = OUT / "_paper_structure_panels"
 RENDERED_PAPER_STRUCTURES.mkdir(exist_ok=True)
-PAPER_RENDER_DPI = 1440
 
 plt.rcParams.update({
     "font.family": "DejaVu Sans",
@@ -50,6 +50,12 @@ PAPER_STRUCTURE_PDFS = {
     "L2": PAPER_STRUCTURES / "L2.pdf",
 }
 
+PAPER_NATIVE_IMAGES = {
+    "A": ("A", 0),
+    "B": ("B", 0),
+    "L2": ("L2", 0),
+}
+
 REFERENCE_STRUCTURE_PNGS = {
     "A": STRUCTURES / "A.png",
     "B": STRUCTURES / "B.png",
@@ -58,26 +64,23 @@ REFERENCE_STRUCTURE_PNGS = {
 
 
 def paper_structure_panel(key):
-    """Return a high-resolution rendering of the original paper structure panel."""
-    pdf = PAPER_STRUCTURE_PDFS[key]
-    out = RENDERED_PAPER_STRUCTURES / f"{key}_{PAPER_RENDER_DPI}dpi.png"
-    if shutil.which("pdftocairo") and (
+    """Return the native Fig.-2a image layer without PDF re-rendering."""
+    source_key, image_index = PAPER_NATIVE_IMAGES[key]
+    pdf = PAPER_STRUCTURE_PDFS[source_key]
+    out = RENDERED_PAPER_STRUCTURES / f"{key}_native.jpg"
+    if shutil.which("pdfimages") and (
         not out.exists() or out.stat().st_mtime < pdf.stat().st_mtime
     ):
-        subprocess.run(
-            [
-                "pdftocairo",
-                "-png",
-                "-singlefile",
-                "-r",
-                str(PAPER_RENDER_DPI),
-                str(pdf),
-                str(out.with_suffix("")),
-            ],
-            check=True,
-        )
-    return out if out.exists() else REFERENCE_STRUCTURE_PNGS[key]
-
+        with tempfile.TemporaryDirectory(prefix="sfg_pdfimages_") as tmp:
+            prefix = Path(tmp) / "img"
+            subprocess.run(["pdfimages", "-j", str(pdf), str(prefix)], check=True)
+            images = sorted(Path(tmp).glob("img-*.jpg"))
+            if image_index >= len(images):
+                raise RuntimeError(f"Could not find image {image_index} in {pdf}")
+            shutil.copy2(images[image_index], out)
+    if out.exists():
+        return out
+    return REFERENCE_STRUCTURE_PNGS[source_key]
 
 def scale_box_to_paper_panel(key, box):
     ref = Image.open(REFERENCE_STRUCTURE_PNGS[key])
@@ -93,7 +96,7 @@ def scale_box_to_paper_panel(key, box):
 
 
 def crop_paper_image(key, box):
-    return crop_image(paper_structure_panel(key), scale_box_to_paper_panel(key, box), sharpen=True)
+    return crop_image(paper_structure_panel(key), scale_box_to_paper_panel(key, box), sharpen=False)
 
 
 def motif_cutout_from_paper(key, box, flip_vertical=True, flip_horizontal=False):
