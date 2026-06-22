@@ -7,14 +7,14 @@
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage{longtable}
-\usepackage{pdflscape}
+\usepackage{float}
 \usepackage{amsmath}
 \usepackage[version=4]{mhchem}
 \usepackage{siunitx}
 \usepackage{url}
 \usepackage{xspace}
 
-\graphicspath{{../figures/}{../si_figures/}}
+\graphicspath{{../figures/}{../si_figures/}{figures/}{si_figures/}}
 \renewcommand{\thefigure}{S\arabic{figure}}
 \renewcommand{\thetable}{S\arabic{table}}
 \newcommand{\waterair}{water--air\xspace}
@@ -22,7 +22,7 @@
 \newcommand{\imchi}{\ensuremath{\mathrm{Im}\,\chi^{(2)}}\xspace}
 
 \title{\textbf{Supplementary Material}\\
-Elucidating the buried silica/water interface with a water--air SFG Rosetta stone}
+The Silica/Water Interface Revisited: Elucidating Interfacial Water Structure with an SFG Rosetta Stone}
 \author{Jen{\'e}e D. Cyran and Thomas D. K{\"u}hne}
 \date{}
 
@@ -31,199 +31,185 @@ Elucidating the buried silica/water interface with a water--air SFG Rosetta ston
 
 \section*{Overview}
 
-This Supplementary Material collects the numerical diagnostics behind the structural assignment in the main text. The purpose is to separate three levels of evidence: (i) high-quality phenomenological reproduction of the measured complex \ce{SiO2}/water spectrum, (ii) transfer of the species-resolved \waterair fingerprints into selected spectral windows, and (iii) model selection among layer-populated water structures. The reference curve for the structural fits is a 17-point moving-average-smoothed version of the digitized experimental imaginary spectrum, stored as \path{imag_smooth} or \path{imag_exp_smooth}; it is not the fitted phenomenological resonance curve \path{imag_fit}. All water-structure fits use nonnegative weights, a floating linear baseline, a global frequency shift, and a global sign convention. The sign is bookkeeping for comparing digitized fingerprints; the structural interpretation follows the experimental convention used in the main text, where positive \imchi corresponds to OH/H orientation toward \ce{SiO2}.
+This Supporting Information documents the silica/water SFG analysis in the main text. The experimental data contain one response channel on the corresponding frequency axis. The structural fits are performed directly on the experimental trace after 17-point moving-average smoothing.
 
-\section*{Complex Spectrum Reproduction}
+The central model in the main text is the three-motif I+VI+VIII fit in the \SIrange{3300}{3800}{cm^{-1}} window. This is treated as the primary physically interpretable OH-transfer window, not as the only valid spectral interval. The window choice is derived from the experimental trace and the model-selection diagnostics rather than from an external structural assignment. The broader \SIrange{3200}{3800}{cm^{-1}} interval is used diagnostically to expose low-edge sensitivity. The \SIrange{3400}{3800}{cm^{-1}} interval is used as a high-frequency control, where the trace is numerically clean but less discriminating because several related bridge-family models fit it almost equally well. The \SIrange{3300}{3800}{cm^{-1}} window is therefore the best balance between data quality and structural information.
 
-\begin{table}[h]
+All structural fits use nonnegative weights, a floating linear baseline, a global frequency shift, and a global sign convention. The sign parameter is bookkeeping for comparing digitized fingerprints. The structural interpretation follows the silica-side viewing convention used in the main text, where positive \imchi corresponds to OH/H orientation toward \ce{SiO2}. The reported weights are coherent RMS-normalized fingerprint contributions. They are not molecule counts. Direct L3-control fits compare VII- and VIII-containing models in order to test whether the deeper-layer response is best represented by motif VIII alone or by an VIII-dominated mixture with motif VII.
+
+\section*{Experimental Trace}
+
+\begin{figure}[H]
 \centering
-\caption{Phenomenological complex line-shape fits to the digitized phase-resolved \ce{SiO2}/water spectrum. These fits reproduce the spectrum but are not used as direct population analyses.}
+\includegraphics[width=0.92\textwidth]{figS_new_trace_usable_zoom}
+\caption{Experimental trace and 17-point moving-average smoothing. The \SIrange{3200}{3300}{cm^{-1}} interval is shown as a low-edge noise caution region. The primary physically interpretable OH-transfer window used in the main text is \SIrange{3300}{3800}{cm^{-1}}.}
+\end{figure}
+
+The source file contains 1600 frequency points. Of these, 1578 are finite. The 22 nonfinite values occur between \SI{2674.4}{cm^{-1}} and \SI{2883.5}{cm^{-1}}, outside the structural OH-stretch window used for the Rosetta-stone fits. The trace is finite throughout all windows from \SI{3000}{cm^{-1}} upward.
+
+\begin{table}[H]
+\centering
+\caption{Data-internal window-choice diagnostics for the experimental trace. The raw-minus-smoothed RMS is computed from the finite raw trace and the 17-point smoothed trace. The relative point-noise estimate is this RMS divided by the local peak-to-peak amplitude of the smoothed trace.}
+\begin{tabular}{lcccc}
+\toprule
+window / \si{cm^{-1}} & role & points & RMS / a.u. & relative noise \\
+\midrule
+3000--3200 & low-frequency noisy region & 237 & 0.1380 & 0.451 \\
+3200--3300 & low-edge noise caution & 116 & 0.0359 & 0.610 \\
+3300--3800 & primary OH-transfer window & 557 & 0.0104 & 0.044 \\
+3400--3800 & high-frequency control & 443 & 0.0064 & 0.027 \\
+3350--3700 & narrow peak-shape control & 392 & 0.0088 & 0.040 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The \SIrange{3300}{3800}{cm^{-1}} window is therefore a compromise rather than a fitted convenience. It avoids the high relative point noise at the low edge, while retaining more of the bonded-OH response than the \SIrange{3400}{3800}{cm^{-1}} high-frequency control. The \SIrange{3200}{3800}{cm^{-1}} window is retained as a diagnostic control because it tests how strongly the fit responds to the noisier lower edge. In this sense, the primary OH-transfer window is selected by the measured trace and by structural discriminability, not by imposing the silica/water interpretation of Cyran \textit{et al.}
+
+\section*{Primary Model and Four-Motif Control}
+
+\begin{table}[H]
+\centering
+\caption{Primary model selection in the \SIrange{3300}{3800}{cm^{-1}} window using 17-point smoothing and a conservative global shift range of \SI{\pm20}{cm^{-1}}.}
 \begin{tabular}{lcccccc}
 \toprule
-case & window / \si{cm^{-1}} & resonances & $R^2_\mathrm{complex}$ & $R^2_\mathrm{Im}$ & $R^2_\mathrm{Re}$ & SSE \\
+model & active motifs & $R^2$ & SSE & shift / \si{cm^{-1}} & sign & BIC \\
 \midrule
-full & 3300--3800 & 14 & 0.9898 & 0.9830 & 0.9929 & 0.002035 \\
-clean & 3350--3800 & 10 & 0.9952 & 0.9933 & 0.9963 & 0.000586 \\
+primary three-motif & I+VI+VIII & 0.995350 & 0.019173 & +4 & +1 & -5692.6 \\
+four-motif control & I+VI+VII+VIII & 0.995433 & 0.018829 & +2 & +1 & -5696.3 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\begin{figure}[h]
+The four-motif control gives a slightly smaller residual, but the numerical gain is small relative to the physical cost of adding another L3 motif. The main text therefore uses I+VI+VIII as the parsimonious three-motif structural model and discusses VII as a symmetry-related/near-degenerate admixture that cannot be uniquely excluded.
+
+\begin{table}[H]
 \centering
-\includegraphics[width=0.82\textwidth]{figS1_high_quality_full_3300_3800_fit}
-\caption{High-quality complex line-shape reproduction in the full nominal \SIrange{3300}{3800}{cm^{-1}} OH-stretch window. The low-frequency edge is treated phenomenologically and not assigned to a unique water motif.}
-\end{figure}
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.82\textwidth]{figS2_high_quality_clean_3350_3800_fit}
-\caption{High-quality complex line-shape reproduction after excluding the most problematic lower edge of the spectrum.}
-\end{figure}
-
-\clearpage
-
-\section*{Fingerprint Window Scan}
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.86\textwidth]{figS3_window_scan}
-\caption{Scan of transferred \waterair fingerprint fits as a function of lower and upper frequency window. The \SIrange{3400}{3800}{cm^{-1}} window is the most stable structural-transfer window for the layer-populated model.}
-\end{figure}
-
-\begin{landscape}
-\begin{table}
-\centering
-\scriptsize
-\caption{Window scan for nonnegative \waterair fingerprint fits. The model labels describe the allowed motif pool; the active species are the motifs that retain nonzero weight after fitting.}
-\begin{tabular}{lllp{3.3cm}rrrrr}
+\caption{RMS-normalized fingerprint fractions for the primary I+VI+VIII fit. These values are spectral weights, not molecular populations.}
+\begin{tabular}{llcc}
 \toprule
-window / \si{cm^{-1}} & model & active motifs & interpretation & $R^2$ & SSE & shift / \si{cm^{-1}} & sign & $p$ vs background \\
+motif & role & nonnegative weight & RMS fraction \\
 \midrule
-3300--3800 & minimal & I,VII,VIII & L1A plus L2 only & 0.6512 & 0.022169 & -37 & -1 & $3.43\times10^{-82}$ \\
-3300--3800 & bridge\_ii\_vi\_pool & I,VI,VII,VIII & L1A plus bridge pool plus L2 & 0.6442 & 0.022615 & -35 & -1 & $1.19\times10^{-78}$ \\
-3300--3800 & bridge\_plus\_iv & I,VI,VII,VIII & added IV; zero additional weight & 0.6442 & 0.022615 & -35 & -1 & $1.19\times10^{-78}$ \\
-3300--3800 & bridge\_plus\_iii\_v & I,VI,VII,VIII & added III/V; zero additional weight & 0.6442 & 0.022615 & -35 & -1 & $1.19\times10^{-78}$ \\
-3300--3800 & flexible\_l1b & I,VI,VII,VIII & flexible L1B control & 0.6442 & 0.022615 & -35 & -1 & $1.19\times10^{-78}$ \\
-3300--3800 & unconstrained & VII,VIII & no layer-population requirement & 0.6774 & 0.020504 & -52 & -1 & $7.69\times10^{-93}$ \\
-\midrule
-3350--3800 & minimal & I,VII & L1A plus one L2 motif & 0.8717 & 0.005541 & +32 & +1 & $1.49\times10^{-36}$ \\
-3350--3800 & bridge\_ii\_vi\_pool & I,VI,VIII & L1A plus bridge pool plus L2 & 0.8592 & 0.006080 & -80 & +1 & $1.36\times10^{-25}$ \\
-3350--3800 & bridge\_plus\_iv & I,VI,VIII & added IV; zero additional weight & 0.8592 & 0.006080 & -80 & +1 & $1.36\times10^{-25}$ \\
-3350--3800 & bridge\_plus\_iii\_v & I,VI,VIII & added III/V; zero additional weight & 0.8592 & 0.006080 & -80 & +1 & $1.36\times10^{-25}$ \\
-3350--3800 & flexible\_l1b & I,IV,VII & flexible L1B control & 0.8775 & 0.005288 & -69 & -1 & $1.63\times10^{-40}$ \\
-3350--3800 & unconstrained & VI,VII & no layer-population requirement & 0.9464 & 0.002316 & +80 & +1 & $1.72\times10^{-130}$ \\
-\midrule
-3400--3800 & minimal & I,VIII & reduced L1/L3 scaffold & 0.9703 & 0.000997 & -28 & +1 & $3.79\times10^{-151}$ \\
-3400--3800 & bridge\_ii\_vi\_pool & I,II,VIII & preferred L1/L2/L3 scaffold & 0.9720 & 0.000942 & -25 & +1 & $5.17\times10^{-155}$ \\
-3400--3800 & bridge\_plus\_iv & I,II,VIII & IV allowed; zero additional weight & 0.9720 & 0.000942 & -25 & +1 & $5.17\times10^{-155}$ \\
-3400--3800 & bridge\_plus\_iii\_v & I,II,VIII & III/V allowed; zero additional weight & 0.9720 & 0.000942 & -25 & +1 & $5.17\times10^{-155}$ \\
-3400--3800 & flexible\_l1b & I,II,VIII & flexible L1B control & 0.9720 & 0.000942 & -25 & +1 & $5.17\times10^{-155}$ \\
-3400--3800 & unconstrained & I,II & no L3 requirement & 0.9707 & 0.000984 & -25 & +1 & $1.94\times10^{-152}$ \\
-\midrule
-3350--3700 & minimal & I,VII & L1A plus one L2 motif & 0.8872 & 0.002894 & +22 & +1 & $8.96\times10^{-82}$ \\
-3350--3700 & bridge\_ii\_vi\_pool & I,II,VII & L1A plus bridge pool plus L2 & 0.8614 & 0.003558 & +36 & +1 & $3.60\times10^{-63}$ \\
-3350--3700 & bridge\_plus\_iv & I,II,VII & IV allowed; zero additional weight & 0.8614 & 0.003558 & +36 & +1 & $3.60\times10^{-63}$ \\
-3350--3700 & bridge\_plus\_iii\_v & I,II,VII & III/V allowed; zero additional weight & 0.8614 & 0.003558 & +36 & +1 & $3.60\times10^{-63}$ \\
-3350--3700 & flexible\_l1b & I,V,VII & flexible L1B control & 0.9052 & 0.002435 & +75 & +1 & $5.41\times10^{-95}$ \\
-3350--3700 & unconstrained & VI,VII & no layer-population requirement & 0.9136 & 0.002218 & +80 & +1 & $3.40\times10^{-104}$ \\
-\bottomrule
-\end{tabular}
-\end{table}
-\end{landscape}
-
-\section*{Clean-Window Model Alternatives}
-
-\begin{table}[h]
-\centering
-\caption{Direct comparison of the near-degenerate \SIrange{3400}{3800}{cm^{-1}} clean-window fits.}
-\begin{tabular}{llcccp{4.0cm}}
-\toprule
-model & active motifs & $R^2$ & SSE & shift / \si{cm^{-1}} & structural limitation \\
-\midrule
-minimal & I,VIII & 0.9703 & 0.000997 & -28 & L2 bridge layer absent \\
-preferred & I,II,VIII & 0.9720 & 0.000942 & -25 & three-motif L1--L2--L3 topology \\
-unconstrained & I,II & 0.9707 & 0.000984 & -25 & deeper H-bonded L3 layer absent \\
+I & L1 weak/free-OH marker & 0.002610 & 0.0234 \\
+VI & L2 bridge-family connector & 0.021721 & 0.1948 \\
+VIII & L3 bonded-water response & 0.087150 & 0.7817 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-The preferred I+II+VIII model is therefore not a unique algebraic decomposition of the spectrum. It is preferred because it is the best clean-window three-motif layered model and because it preserves a hydrogen-bonded L1--L2--L3 topology. The incremental gain relative to I+VIII is modest ($\Delta R^2=0.00163$, $\Delta\mathrm{SSE}=5.49\times10^{-5}$) but statistically resolved in an approximate nested F test ($F=25.5$, $p=6.5\times10^{-7}$, one added structural weight). The F test is diagnostic rather than strict because the nonnegative weights and global frequency shift are reoptimized.
+\section*{Direct L3 VII/VIII Control}
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
-\begin{minipage}{0.32\textwidth}
-\centering
-\includegraphics[width=\linewidth]{figS4a_3400_minimal}
-\end{minipage}
-\begin{minipage}{0.32\textwidth}
-\centering
-\includegraphics[width=\linewidth]{figS4b_3400_preferred}
-\end{minipage}
-\begin{minipage}{0.32\textwidth}
-\centering
-\includegraphics[width=\linewidth]{figS4c_3400_unconstrained}
-\end{minipage}
-\caption{Representative \SIrange{3400}{3800}{cm^{-1}} clean-window fits. Left: reduced I+VIII scaffold. Middle: preferred three-motif I+II+VIII layered scaffold. Right: unconstrained I+II fit, which is numerically similar but lacks the deeper L3 motif.}
+\includegraphics[width=0.92\textwidth]{figS_new_l3_vii_viii_control}
+\caption{Direct L3-control fits in the primary physically interpretable \SIrange{3300}{3800}{cm^{-1}} OH-transfer window. A VII-only L3 substitution gives a substantially poorer fit, whereas adding VII to I+VI+VIII gives only a very small visual and numerical change.}
 \end{figure}
 
-\begin{table}[h]
+\begin{table}[H]
 \centering
-\caption{RMS-normalized fingerprint fractions for the \SIrange{3400}{3800}{cm^{-1}} clean-window alternatives.}
-\begin{tabular}{lccc}
+\caption{Direct VII/VIII control in the primary physically interpretable \SIrange{3300}{3800}{cm^{-1}} OH-transfer window. The I+VI+VII fit collapses to a VI-only solution within the nonnegative least-squares constraint, whereas the I+VI+VIII and I+VI+VII+VIII fits are nearly indistinguishable.}
+\begin{tabular}{lccccc}
 \toprule
-motif & I+VIII minimal & I+II+VIII preferred & I+II unconstrained \\
+model & active motifs & $R^2$ & SSE & shift / \si{cm^{-1}} & BIC \\
 \midrule
-I & 0.4616 & 0.3752 & 0.3376 \\
-II & 0 & 0.3947 & 0.6624 \\
-III & 0 & 0 & 0 \\
-IV & 0 & 0 & 0 \\
-V & 0 & 0 & 0 \\
-VI & 0 & 0 & 0 \\
-VII & 0 & 0 & 0 \\
-VIII & 0.5384 & 0.2301 & 0 \\
+I+VI+VII & VI & 0.945677 & 0.223992 & -20 & -4323.4 \\
+I+VI+VIII & I+VI+VIII & 0.995350 & 0.019173 & +4 & -5692.6 \\
+I+VI+VII+VIII & I+VI+VII+VIII & 0.995433 & 0.018829 & +2 & -5696.3 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\clearpage
+This control does not prove that the microscopic L3 population is purely motif VIII. It shows that the dominant L3 response is assigned to motif VIII, while motif VII remains a symmetry-related/near-degenerate admixture that cannot be uniquely excluded from the one-dimensional SFG trace. Azimuthal mirror variants of a motif are likewise not expected to be cleanly resolved unless they change the OH orientation relative to the surface normal.
 
-\section*{Edge-Sensitive and Forced-Bridge Controls}
+\section*{Exact Motif Candidate Fits}
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
-\includegraphics[width=0.78\textwidth]{figS5_3300_bridge_pool}
-\caption{Layer-populated paper-fingerprint fit over the full \SIrange{3300}{3800}{cm^{-1}} window. The fit quality drops to $R^2\approx0.64$, showing that the lower edge is not cleanly described by transferred water fingerprints alone.}
+\includegraphics[width=0.95\textwidth]{figS_new_exact_motif_candidate_fits}
+\caption{Selected exact motif fits in several spectral windows. The I+VI+VIII and I+VI+VII+VIII models are nearly indistinguishable in the primary physically interpretable \SIrange{3300}{3800}{cm^{-1}} OH-transfer window. In narrower high-frequency windows, several models can reach very high $R^2$, illustrating the underdetermined character of the inversion.}
 \end{figure}
 
-\begin{figure}[h]
+\begin{table}[H]
 \centering
-\includegraphics[width=0.78\textwidth]{figS6_3350_3800_bridge_pool}
-\caption{Bridge-pool fit over \SIrange{3350}{3800}{cm^{-1}}. This intermediate window improves relative to the full nominal window but remains more sensitive to edge effects than the \SIrange{3400}{3800}{cm^{-1}} fit.}
-\end{figure}
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.78\textwidth]{figS7_3350_3700_bridge_pool}
-\caption{Bridge-pool fit over \SIrange{3350}{3700}{cm^{-1}}. The reduced upper bound changes the selected L2 motif and illustrates the sensitivity of the inversion to window definition.}
-\end{figure}
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.78\textwidth]{figS8_forced_ii_vi}
-\caption{Control fit in which both II and VI are forced into the bridge layer. This constraint produces a less favorable fit than allowing the bridge pool to select the spectrally supported component.}
-\end{figure}
-
-\section*{Machine-Readable Data Inventory}
-
-The following files contain the numerical data used to generate the main-text and SI figures. They are retained in the public project repository at \url{https://github.com/DCM-Uni-Paderborn/sio2-water-sfg-rosetta} and can be deposited directly as tabular Supporting Information.
-
-\begin{longtable}{p{0.43\textwidth}p{0.49\textwidth}}
-\caption{Core machine-readable output files.}\\
+\caption{Exact motif-set selection for the two most relevant windows. The table reports fits with 17-point smoothing and a conservative shift range of \SI{\pm20}{cm^{-1}}.}
+\begin{tabular}{lccccc}
 \toprule
-file & contents \\
+window / \si{cm^{-1}} & active motifs & $R^2$ & SSE & shift / \si{cm^{-1}} & BIC \\
+\midrule
+3300--3800 & I+VI+VII+VIII & 0.995433 & 0.018829 & +2 & -5696.3 \\
+3300--3800 & I+VI+VIII & 0.995350 & 0.019173 & +4 & -5692.6 \\
+3300--3800 & I+II+VIII & 0.994655 & 0.022038 & +7 & -5615.0 \\
+3300--3800 & I+II+VI+VIII & 0.993007 & 0.028836 & -8 & -5458.9 \\
+\midrule
+3400--3800 & I+IV+VI+VIII & 0.996938 & 0.009599 & -5 & -4721.1 \\
+3400--3800 & I+VI+VIII & 0.996677 & 0.010414 & +2 & -4691.1 \\
+3400--3800 & I+II+VI+VIII & 0.996717 & 0.010291 & 0 & -4690.3 \\
+3400--3800 & I+II+VIII & 0.995552 & 0.013942 & +9 & -4561.8 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The \SIrange{3200}{3800}{cm^{-1}} window is useful diagnostically because it reveals low-edge sensitivity, while the \SIrange{3400}{3800}{cm^{-1}} high-frequency control can be fit very well by several related bridge-family models. This is why the main text emphasizes the \SIrange{3300}{3800}{cm^{-1}} primary physically interpretable OH-transfer window: it retains the high-frequency weak-OH region and the bonded OH response while avoiding the noisier low edge. Within that window, the I+VI+VIII model is the parsimonious three-motif interpretation, and motif VI is the preferred bridge-family connector.
+
+\section*{Smoothing and Window Robustness}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.96\textwidth]{figS_new_window_smoothing_robustness}
+\caption{Robustness of selected model classes. (a) $R^2$ in the primary physically interpretable \SIrange{3300}{3800}{cm^{-1}} OH-transfer window as a function of moving-average width. (b) Window dependence at 17-point smoothing. The \SIrange{3200}{3800}{cm^{-1}} window is diagnostic for low-edge sensitivity, while the very high $R^2$ values in narrower or higher-frequency windows illustrate why window variation is a diagnostic for underdetermination rather than a route to a unique structure.}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\caption{$R^2$ of the I+VI+VIII primary model as a function of smoothing window. The 17-point value is used in the main text.}
+\begin{tabular}{lcccccc}
+\toprule
+fit window / \si{cm^{-1}} & 1 pt & 7 pt & 11 pt & 17 pt & 25 pt & 33 pt \\
+\midrule
+3300--3800 & 0.981067 & 0.994246 & 0.994852 & 0.995350 & 0.995685 & 0.996023 \\
+3400--3800 & 0.990688 & 0.995927 & 0.996348 & 0.996677 & 0.996847 & 0.996977 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{$R^2$ robustness for selected competing models in the primary physically interpretable \SIrange{3300}{3800}{cm^{-1}} OH-transfer window.}
+\begin{tabular}{lcccccc}
+\toprule
+model & 1 pt & 7 pt & 11 pt & 17 pt & 25 pt & 33 pt \\
+\midrule
+I+VI+VIII & 0.981067 & 0.994246 & 0.994852 & 0.995350 & 0.995685 & 0.996023 \\
+I+VI+VII+VIII & 0.981112 & 0.994336 & 0.994939 & 0.995433 & 0.995772 & 0.996101 \\
+I+II+VIII & 0.980364 & 0.993538 & 0.994147 & 0.994655 & 0.995008 & 0.995365 \\
+I+II+VI+VIII & 0.979213 & 0.991913 & 0.992516 & 0.993007 & 0.993307 & 0.994020 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The smoothing test shows that the qualitative conclusion is not a consequence of choosing exactly 17 points. The no-smoothing fits are lower because the raw trace contains high-frequency point noise, especially near the low edge. For all tested smoothing windows from 7 to 33 points, the I+VI+VIII and I+VI+VII+VIII models remain the strongest candidates in the primary OH-transfer window.
+
+\section*{Machine-Readable Files}
+
+The local project contains the numerical data used in this draft:
+
+\begin{longtable}{p{0.36\textwidth}p{0.55\textwidth}}
+\caption{Core numerical records for the analysis.}\\
+\toprule
+record & contents \\
 \midrule
 \endfirsthead
 \toprule
-file & contents \\
+record & contents \\
 \midrule
 \endhead
-\path{paper_sfg_fingerprints_digitized.csv} & Digitized motif-resolved total \imchi fingerprints from the reference \waterair analysis. \\
-\path{sfg_processed.csv} & Processed/digitized \ce{SiO2}/water spectrum used for fitting and plotting. \\
-\path{high_quality_sfg_fit_summary.csv} & Summary statistics for phenomenological complex line-shape fits. \\
-\path{high_quality_full_3300_3800_curve.csv} & Experimental and fitted complex-spectrum curves for the full nominal OH window. \\
-\path{high_quality_full_3300_3800_components.csv} & Resonance components for the full-window complex fit. \\
-\path{high_quality_clean_3350_3800_curve.csv} & Experimental and fitted complex-spectrum curves for the cleaner \SIrange{3350}{3800}{cm^{-1}} window. \\
-\path{paper_fingerprint_window_scan_summary.csv} & Window-scan summary for transferred \waterair fingerprint fits. \\
-\path{paper_window_3400_3800_bridge_pool_curve.csv} & Preferred clean-window I+II+VIII fit curve and component columns. \\
-\path{paper_window_3400_3800_bridge_pool_weights.csv} & Preferred clean-window nonnegative weights and RMS fractions. \\
-\path{paper_window_3400_3800_minimal_curve.csv} & Reduced I+VIII clean-window fit curve. \\
-\path{paper_window_3400_3800_minimal_weights.csv} & Reduced I+VIII clean-window weights. \\
-\path{paper_window_3400_3800_unconstrained_curve.csv} & Unconstrained I+II clean-window fit curve. \\
-\path{paper_window_3400_3800_unconstrained_weights.csv} & Unconstrained I+II clean-window weights. \\
-\path{paper_window_3300_3800_bridge_pool_curve.csv} & Full-window layer-populated paper-fingerprint fit curve. \\
-\path{paper_window_3300_3800_bridge_pool_weights.csv} & Full-window layer-populated paper-fingerprint weights. \\
-\path{paper_fingerprint_staged_fit_summary.csv} & Staged model comparison in the nominal OH window. \\
-\path{paper_fingerprint_staged_fit_report.md} & Human-readable staged-fit report and interpretation notes. \\
+experimental trace & Frequency axis and measured response channel. \\
+processed trace & Raw, interpolated, and smoothed forms of the trace. \\
+primary fit curve & I+VI+VIII fit curve, baseline, residual, and component curves. \\
+primary weights & Nonnegative weights and RMS fractions for the primary model. \\
+model-selection diagnostics & Three-motif model, four-motif control, and candidate-model sensitivity. \\
+window diagnostics & Data-internal window-quality diagnostics, including raw-minus-smoothed RMS values. \\
+L3 controls & Fit and residual curves for direct VII/VIII controls in the primary OH-transfer window. \\
+fingerprint basis & Digitized water--air Rosetta-stone fingerprints used as structural basis functions. \\
 \bottomrule
 \end{longtable}
 

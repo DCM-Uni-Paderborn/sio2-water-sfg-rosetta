@@ -7,11 +7,11 @@ authors:
   - family-names: Kuehne
     given-names: Thomas D.
 repository-code: "https://github.com/DCM-Uni-Paderborn/sio2-water-sfg-rosetta"
-date-released: "2026-06-12"
+date-released: "2026-06-22"
 license: MIT
 preferred-citation:
   type: article
-  title: "Elucidating the buried silica/water interface with a water-air SFG Rosetta stone"
+  title: "The Silica/Water Interface Revisited: Elucidating Interfacial Water Structure with an SFG Rosetta Stone"
   authors:
     - family-names: Cyran
       given-names: Jenee D.

@@ -1,0 +1,2 @@
+r2,sse,sse_base,p_value,f_value,dfn,dfd,aic,bic,parameter_count,shift_cm-1,global_sign,window_start_cm-1,window_end_cm-1,species,smoothing_points,max_shift_cm-1
+0.9953501498574218,0.019172943996780996,0.5146092799945094,0.0,4754.631622503421,3,552,-5714.188963089267,-5692.576136889631,5,4.0,1.0,3300.0,3800.0,I+VI+VIII,17,20

@@ -1,0 +1,4 @@
+species,label,region,hbond_character,nonnegative_weight,rms_contribution,rms_fraction
+I,I / L1 Region A free-OH motif,L1 Region A,one nearly free OH plus one OH directed back to the H-bond network,0.002609553495132361,0.002609553495132361,0.02340811742924631
+VI,VI / L1 Region B connector motif,L1 Region B,connector from Region B toward L2; mostly H-bonded with weakly bonded shoulder,0.021721242193499277,0.021721242193499274,0.19484305990390938
+VIII,VIII / L2 positive bonded motif,L2,"second-layer H-bonded motif, partially cancels VII",0.08714991193427021,0.08714991193427023,0.7817488226668444
