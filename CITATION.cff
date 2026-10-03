@@ -3,19 +3,19 @@ message: "If you use this repository, please cite the associated manuscript and 
 title: "SiO2/water SFG Rosetta-stone analysis"
 authors:
   - family-names: Cyran
-    given-names: Jenee D.
-  - family-names: Kuehne
+    given-names: Jenée D.
+  - family-names: Kühne
     given-names: Thomas D.
 repository-code: "https://github.com/DCM-Uni-Paderborn/sio2-water-sfg-rosetta"
 date-released: "2026-06-22"
 license: MIT
 preferred-citation:
   type: article
-  title: "The Silica/Water Interface Revisited: Elucidating Interfacial Water Structure with an SFG Rosetta Stone"
+  title: "Interpreting the Silica/Water Sum-Frequency Spectrum with a Molecular Motif Dictionary"
   authors:
     - family-names: Cyran
-      given-names: Jenee D.
-    - family-names: Kuehne
+      given-names: Jenée D.
+    - family-names: Kühne
       given-names: Thomas D.
   year: 2026
-  notes: "Manuscript in preparation"
+  notes: "Communication draft under review"
