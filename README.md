@@ -2,7 +2,7 @@
 
 Data and reproducible analysis for the Communication draft:
 
-**Interpreting the Silica/Water Sum-Frequency Spectrum with a Molecular Motif Dictionary**
+**The Silica/Water Interface Revisited: Elucidating Interfacial Water Structure with an SFG Rosetta Stone**
 
 This review revision corrects the frequency calibration and nonnegative fitting of the earlier release. The source EPS curves extend approximately 2900–3900 cm⁻¹; the labeled ticks at 3000 and 3800 cm⁻¹ calibrate the axes. Calibrating the curve endpoints to those ticks incorrectly compressed the frequency scale.
 
