@@ -1,59 +1,59 @@
-# Silica/water SFG motif analysis
+# SiO2/water SFG Rosetta-stone analysis
 
-Data and reproducible analysis for the Communication draft:
+This repository contains the numerical data, analysis scripts, processed fit outputs, and manuscript figure assets for the study:
 
 **The Silica/Water Interface Revisited: Elucidating Interfacial Water Structure with an SFG Rosetta Stone**
 
-This review revision corrects the frequency calibration and nonnegative fitting of the earlier release. The source EPS curves extend approximately 2900–3900 cm⁻¹; the labeled ticks at 3000 and 3800 cm⁻¹ calibrate the axes. Calibrating the curve endpoints to those ticks incorrectly compressed the frequency scale.
+The central analysis interprets the silica/water SFG response trace of Cyran *et al.* using motif-resolved water-air SFG fingerprints as a structural dictionary. The current primary model is a three-motif I+VI+VIII hydrogen-bonded water network in the 3300--3800 cm^-1 OH-transfer window. Motif I supplies a small silica-facing weak/free-OH marker, motif VI acts as a hydrogen-bond connector, and motif VIII dominates the deeper bonded-water response. Motif VII is retained as a near-degenerate L3 admixture that cannot be uniquely excluded from the one-dimensional SFG trace.
 
-With the calibrated dictionary, the I+VI+VIII candidate in 3300–3800 cm⁻¹ reduces to **I+VIII**: VI has zero coefficient and R² = 0.991811. Allowing VII gives a **VII+VIII** boundary solution with R² = 0.991971. In the 3400–3800 cm⁻¹ control, I+VIII gives R² = 0.997986. The weak-OH contribution is window dependent, and the primary fit does not establish an I–VI–VIII network. Main-text Fig. 4 illustrates a possible geometry.
+## Repository layout
 
-## Files retained for the paper
+- `newest_data/heat2_fud.txt` and `newest_data/xaxis_fud.txt`: current experimental silica/water response trace and frequency axis used by the manuscript.
+- `sio2_water_complex.csv` and `xaxis.txt`: earlier digitized complex silica/water SFG spectrum and frequency axis retained for provenance.
+- `analysis/`: processed spectra, fit curves, weights, summaries, window scans, and diagnostic plots.
+- `SFG_Structure/`: source water-air fingerprint EPS files and structure panels used to digitize/re-render the Rosetta-stone figures.
+- `figures/`: main-text figure outputs.
+- `si_figures/`: supplementary figure outputs.
+- `manuscript/`: LaTeX manuscript and supplementary material sources.
+- `*.py`: analysis scripts used in the processing workflow. The final exported manuscript figures are included directly in `figures/` and are the authoritative figure assets for this release.
 
-| Location | Purpose |
-|---|---|
-| `newest_data/` | Original author-supplied response and frequency axis |
-| `SFG_Structure/` | Three source EPS files and three orientation PDFs |
-| `analysis/structure_figures/` | Three panel references needed for crop calibration |
-| `analysis/*.csv` | Calibrated basis, fits, coefficients, scans, and diagnostics |
-| `figures/` | Four current main-text figures, PDF and PNG |
-| `si_figures/` | Four current supplementary figures, PDF and PNG |
-| `manuscript/` | Main text, supplementary material, and cited bibliography |
+## Key output files
 
-Obsolete fits to an earlier digitized complex spectrum, exploratory resonance models, unused panels, and superseded figures were removed from the current tree. They remain recoverable from Git history, including the previous release commit `2b03344`.
+- `analysis/paper_sfg_fingerprints_digitized.csv`: digitized motif-resolved water-air total-SFG fingerprints.
+- `analysis/newest_trace_processed.csv`: current raw, interpolated, and smoothed experimental trace.
+- `analysis/newest_primary_3300_3800_I_VI_VIII_curve.csv`: primary I+VI+VIII fit curve, baseline, residual, and component curves.
+- `analysis/newest_primary_3300_3800_I_VI_VIII_weights.csv`: primary nonnegative weights and RMS-normalized spectral fractions.
+- `analysis/newest_primary_model_comparison.csv`: primary three-motif model and four-motif I+VI+VII+VIII control.
+- `analysis/newest_exact_motif_candidate_comparison.csv`: candidate-model comparison across windows.
+- `analysis/newest_smoothing_window_sensitivity.csv`: smoothing-window robustness diagnostics.
+- `analysis/newest_window_choice_summary.csv`: trace-based window-quality summary.
 
-## Reproduce the analysis and figures
+## Reproducing the analysis
 
-Python 3.10 or newer is required. Install `requirements.txt`. Poppler's `pdfimages` command extracts native orientation images from the PDFs. It is included in Homebrew's `poppler` package and Debian/Ubuntu's `poppler-utils` package.
-
-Run from the repository root:
+Install the Python dependencies:
 
 ```bash
 python3 -m pip install -r requirements.txt
-python3 digitize_fingerprints.py
-python3 analyze_current_trace.py
-python3 make_manuscript_figures.py
-python3 make_supplementary_tables.py
 ```
 
-The analysis examines every coefficient boundary, verifies NNLS optimality conditions, and checks that adding an allowed motif cannot worsen the residual. It also evaluates all 92 one-, two-, and three-motif dictionary subsets in each of two windows. The solver uses NumPy; SciPy is not required.
-
-To compile the manuscripts, use a TeX installation containing REVTeX 4.2, `latexmk`, `mhchem`, and `siunitx`:
+The current manuscript-ready output tables and figures are included in the repository. Legacy scripts used during development can be re-run from the repository root:
 
 ```bash
-cd manuscript
-latexmk -pdf main.tex
-latexmk -pdf supporting_information.tex
+python3 analyze_sfg.py
+python3 fit_high_quality_sfg.py
+python3 fit_paper_fingerprints_to_sio2.py
+python3 scan_paper_fingerprint_windows.py
+python3 build_layered_water_model.py
 ```
 
-Numerical SI tables are generated from the CSV records. Re-running the table generator preserves the surrounding prose. PNG files are previews; PDF figures are used by LaTeX. Temporary image caches and TeX build files are ignored.
+The final manuscript figure exports are stored in `figures/`. Some final layout adjustments were applied to the exported figure files during manuscript preparation, so the archived PNG/PDF files are the authoritative figure assets for this release. The manuscript layout helper in `manuscript/` is retained as development provenance and is not required to use the release.
 
-## Interpretation and sources
+## Notes on the experimental reference
 
-R² measures descriptive agreement. Smoothed samples are correlated, shifts and motif sets are optimized, and coefficients may lie on boundaries; conventional F-test probabilities are not reported. RMS coefficient fractions are spectral weights, not molecular populations.
+The silica/water spectrum was digitized from the published phase-resolved SFG data of Cyran *et al.*, *PNAS* **116**, 1520-1525 (2019), DOI: [10.1073/pnas.1819000116](https://doi.org/10.1073/pnas.1819000116). The published paper PDF is not redistributed here.
 
-The experimental files were supplied by J. D. Cyran in connection with [Cyran et al., PNAS 116, 1520–1525 (2019)](https://doi.org/10.1073/pnas.1819000116). They are supplied numerical data, rather than a digitization of a plot. The dictionary comes from [Kaliannan et al., ChemRxiv (2026), version 1](https://doi.org/10.26434/chemrxiv.15003862/v1). See `SOURCE_DATA.md` for provenance and `DATA_LICENSE.md` for attribution and licensing.
+The current structural fits use a 17-point moving-average-smoothed version of `newest_data/heat2_fud.txt` in the 3300--3800 cm^-1 OH-transfer window. They fit the experimental trace directly with transferred motif fingerprints, not a phenomenological Lorentzian/resonance model.
 
-## License and citation
+## License
 
-Code: MIT. Author-produced numerical outputs and generated figures: CC BY 4.0 under the existing data license. Source materials retain their original rights and attribution. Cite the associated manuscript and both source studies.
+Code in this repository is distributed under the MIT License. Numerical data, processed outputs, and generated figures are made available under CC BY 4.0 unless a source file explicitly states otherwise. Please cite the associated manuscript and the original Cyran *et al.* data source when using the data.

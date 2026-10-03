@@ -1,0 +1,9 @@
+label,region,species,hbond_character,nonnegative_weight,rms_contribution,active,rms_fraction
+I / L1 Region A free-OH motif,L1 Region A,I,one nearly free OH plus one OH directed back to the H-bond network,0.003488633800739681,0.003488633800739681,True,0.194509661429746
+II / L1 Region B upward motif,L1 Region B,II,Region-B water connecting toward the dilute outer/weakly bonded side,8.843900165519237e-05,8.843900165519237e-05,True,0.004930938943918072
+III / L1 Region B upward H-bond motif,L1 Region B,III,H-bonded Region-B motif with high-frequency/free-OH-like contribution,0.0,0.0,False,0.0
+IV / L1 Region B parallel motif,L1 Region B,IV,"dipole and OH bonds nearly parallel to interface; weak locally, coupling-active",0.0,0.0,False,0.0
+V / L1 Region B liquid-oriented motif,L1 Region B,V,bonded OH groups oriented toward the liquid/H-bond network,0.0,0.0,False,0.0
+VI / L1 Region B connector motif,L1 Region B,VI,connector from Region B toward L2; mostly H-bonded with weakly bonded shoulder,0.0,0.0,False,0.0
+VII / L2 negative bonded motif,L2,VII,"second-layer H-bonded motif, opposite orientation to VIII",0.014358456852514958,0.01435845685251496,True,0.8005593996263359
+VIII / L2 positive bonded motif,L2,VIII,"second-layer H-bonded motif, partially cancels VII",0.0,0.0,False,0.0

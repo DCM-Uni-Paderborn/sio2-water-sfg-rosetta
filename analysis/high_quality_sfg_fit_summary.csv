@@ -1,0 +1,3 @@
+case,fit_window,description,resonance_count,complex_r2,imag_r2,real_r2,sse,selected_centers,selected_gammas
+full_3300_3800,3300-3800,Full nominal OH window. Low-edge features are allowed as nuisance tails.,14,0.9897543739982884,0.9830326943076024,0.9929170057799243,0.002035246112770967,"3320, 3595, 3350, 3275, 3265, 3675, 3440, 3150, 3255, 3245, 3235, 3380, 3290, 3770","12, 75, 8, 5, 5, 25, 12, 5, 5, 5, 5, 8, 5, 12"
+clean_3350_3800,3350-3800,"Cleaner water-fingerprint window, avoiding the most problematic 3300 cm^-1 edge.",10,0.9952295325837218,0.9933149846232299,0.9962677409045914,0.0005858530639042125,"3630, 3360, 3450, 3675, 3325, 3310, 3335, 3300, 3765, 3405","75, 8, 18, 25, 5, 5, 5, 5, 8, 8"

@@ -1,0 +1,10 @@
+component,group,structural_center_cm-1,observed_center_cm-1,observed_gamma_cm-1,expected_imag_sign_after_global_sign,nonnegative_amplitude,signed_spectral_weight,assignment,absolute_weight_fraction
+VIII / low-bonded positive,subsurface-positive,3230.0,2670.5333333333333,7.219333333333333,1.0,0.03642750531673588,0.43348731326915696,positive bonded-OH feature from upward-biased second-layer motifs,0.007561998964126519
+IV coupling low-frequency pair,coupling,3260.0,2688.7333333333336,12.315333333333333,-1.0,0.0,-0.0,negative low-frequency part introduced by intermolecular coupling,0.0
+V-VI liquid-oriented bonded OH,liquid-oriented-bonded,3335.0,2734.2333333333336,15.287999999999998,-1.0,0.0,-0.0,bonded OH groups preferentially oriented toward the liquid network,0.0
+VII second-layer bonded OH,subsurface-negative,3390.0,2767.6,11.678333333333333,-1.0,0.3242971816255772,-6.2427207462923615,negative bonded-OH response of second-layer motifs,0.10890156729334857
+surface-oriented bonded OH,surface-oriented-bonded,3430.0,2791.866666666667,9.767333333333333,1.0,1.289269575916861,20.75724017226146,"positive H-bonded OH response, analogous to H atoms oriented toward silica",0.36210109010342484
+IV/VIII high-frequency coupling,coupling,3470.0,2816.133333333333,15.287999999999998,1.0,0.07341220717370985,1.8499876207774881,positive high-frequency component of the collective bonded-OH response,0.032272235066035146
+weakly bonded upward motif,weakly-bonded,3560.0,2870.7333333333336,14.438666666666666,1.0,0.0,0.0,weakly H-bonded top-layer water with upward/surface-directed OH character,0.0
+I-III free OH,free-oh,3660.0,2931.4,5.308333333333334,1.0,2.3200590396291503,20.300516596755063,sharp free/quasi-free OH response from top-layer or siloxane-facing water,0.3541337445799191
+heterogeneous free-OH shoulder,free-oh,3710.0,2961.7333333333336,9.555,1.0,0.49145916909519854,7.7404819132493765,broader distribution of weakly bonded/free OH orientations,0.13502936399314586

@@ -1,4 +1,5 @@
 \documentclass[11pt]{article}
+
 \usepackage[margin=1in]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -12,235 +13,204 @@
 \usepackage{siunitx}
 \usepackage{url}
 \usepackage{xspace}
-\emergencystretch=1em
-\graphicspath{{../figures/}{../si_figures/}}
+
+\graphicspath{{../figures/}{../si_figures/}{figures/}{si_figures/}}
 \renewcommand{\thefigure}{S\arabic{figure}}
 \renewcommand{\thetable}{S\arabic{table}}
-\renewcommand{\theequation}{S\arabic{equation}}
 \newcommand{\waterair}{water--air\xspace}
 \newcommand{\sfg}{SFG\xspace}
 \newcommand{\imchi}{\ensuremath{\mathrm{Im}\,\chi^{(2)}}\xspace}
+
 \title{\textbf{Supplementary Material}\\
 The Silica/Water Interface Revisited: Elucidating Interfacial Water Structure with an SFG Rosetta Stone}
 \author{Jen{\'e}e D. Cyran and Thomas D. K{\"u}hne}
 \date{}
+
 \begin{document}
 \maketitle
 
-\section{Scope and Data Provenance}
-This Supplementary Material documents the calibrated fingerprint transfer and sensitivity analyses reported in the main text. The experimental response channel and frequency axis are archived as \path{newest_data/heat2_fud.txt} and \path{newest_data/xaxis_fud.txt}, respectively. They were supplied by J.~D.~Cyran and are associated with the silica/water experiments described in Ref.~\cite{Cyran2019PNAS}. They are numerical source data, rather than a digitization of the published experimental figure. The archive contains one channel, so the present analysis does not independently fit a full complex real/imaginary susceptibility pair.
+\section*{Overview}
 
-\section{Experimental Materials and Methods}
-\subsection{Sample Preparation}
-Infrasil 302 silica windows, \SI{25}{mm} in diameter and \SI{2}{mm} thick (Korth Kristalle), were used as substrates. The windows were sonicated in ethanol and water, then immersed in 3:1 piranha solution for \SI{10}{min}. The windows were heated at \SI{950}{\degreeCelsius} for \SI{4}{h}, allowed to cool, and immersed in 3:1 acidic piranha solution for \SI{10}{min}. Glassware was sonicated in Deconex, ethanol, and Millipore water for \SI{15}{min}, then rinsed thoroughly with Millipore water.
+This Supporting Information documents the silica/water SFG analysis in the main text. The experimental data contain one response channel on the corresponding frequency axis. The structural fits are performed directly on the experimental trace after 17-point moving-average smoothing.
 
-\subsection{Phase-Resolved SFG Spectroscopy}
-The spectrometer uses a Ti:sapphire regenerative amplifier (Spitfire Ace, Spectra-Physics) producing approximately \SI{40}{fs} pulses centered at \SI{800}{nm}. One portion of the output drives an optical parametric amplifier (TOPAS-Prime, Light Conversion) with a noncollinear difference-frequency-generation stage, producing IR pulses centered near \SI{3600}{cm^{-1}}. A second portion, approximately \SI{1}{mJ}, passes through an etalon to generate a narrowband visible pulse with a bandwidth of \SI{25}{cm^{-1}}, which determines the spectral resolution.
+The central model in the main text is the three-motif I+VI+VIII fit in the \SIrange{3300}{3800}{cm^{-1}} window. This is treated as the primary physically interpretable OH-transfer window, not as the only valid spectral interval. The window choice is derived from the experimental trace and the model-selection diagnostics rather than from an external structural assignment. The broader \SIrange{3200}{3800}{cm^{-1}} interval is used diagnostically to expose low-edge sensitivity. The \SIrange{3400}{3800}{cm^{-1}} interval is used as a high-frequency control, where the trace is numerically clean but less discriminating because several related bridge-family models fit it almost equally well. The \SIrange{3300}{3800}{cm^{-1}} window is therefore the best balance between data quality and structural information.
 
-The IR and visible beams are focused with lenses of \SI{5}{cm} and \SI{100}{cm} focal length, respectively, and overlap spatially and temporally at a gold mirror to produce a local oscillator (LO). A curved mirror with a \SI{5}{cm} focal length collects the IR, visible, and LO beams and focuses them onto an Infrasil 302 window in contact with water. At the silica/air boundary, the IR and visible incidence angles are approximately \ang{45} and \ang{40} from the surface normal. A \SI{1}{mm} fused-silica plate introduces a delay between the LO and the IR/visible pulses. The LO and sample SFG signal are sent to a spectrometer (Acton SP-2300, Princeton Instruments) and detected with an EMCCD camera (Newton 970, Andor). Spectra were acquired for \SI{5}{min} in the $ssp$ polarization combination, denoting $s$-polarized SFG, $s$-polarized visible, and $p$-polarized IR. A gold-coated silica window provides the reference.
+All structural fits use nonnegative weights, a floating linear baseline, a global frequency shift, and a global sign convention. The sign parameter is bookkeeping for comparing digitized fingerprints. The structural interpretation follows the silica-side viewing convention used in the main text, where positive \imchi corresponds to OH/H orientation toward \ce{SiO2}. The reported weights are coherent RMS-normalized fingerprint contributions. They are not molecule counts. Direct L3-control fits compare VII- and VIII-containing models in order to test whether the deeper-layer response is best represented by motif VIII alone or by an VIII-dominated mixture with motif VII.
 
-\section{Experimental Trace and Window Diagnostics}
-The source files contain 1600 paired frequency and response values. There are 1578 finite response values and 22 nonfinite values between \SI{2674.4}{cm^{-1}} and \SI{2883.5}{cm^{-1}}. All original response values at frequencies of \SI{3000}{cm^{-1}} and above are finite. For plotting and smoothing the full trace, nonfinite values are linearly interpolated from adjacent finite measurements; no fitted point in the reported windows is replaced by interpolation.
-
-A moving average is applied to the full trace before window selection. For odd width $q$, the arithmetic mean of the $q$ neighboring samples is used, with repeated endpoint values for padding. The primary width is $q=17$; $q=1$ denotes the unsmoothed trace. Widths 7, 11, 25, and 33 are also tested. Averaging is performed on the supplied point grid, not on an assumed uniform frequency grid.
+\section*{Experimental Trace}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.94\textwidth]{figS1_trace}
-\caption{Original and 17-point-averaged experimental response. (a) Full vertical range above \SI{3000}{cm^{-1}}. (b) The same data with the vertical scale expanded. Orange shading marks \SIrange{3200}{3300}{cm^{-1}}; blue shading marks the primary \SIrange{3300}{3800}{cm^{-1}} comparison window.}
-\label{fig:trace}
+\includegraphics[width=0.92\textwidth]{figS_new_trace_usable_zoom}
+\caption{Experimental trace and 17-point moving-average smoothing. The \SIrange{3200}{3300}{cm^{-1}} interval is shown as a low-edge noise caution region. The primary physically interpretable OH-transfer window used in the main text is \SIrange{3300}{3800}{cm^{-1}}.}
 \end{figure}
 
-\begin{table}[H]
-\centering\small
-\caption{Window diagnostics. The fluctuation RMS is $\sqrt{\langle(y_{\rm raw}-y_{17})^2\rangle}$ over finite data in each interval. Relative fluctuation is this value divided by the peak-to-peak amplitude of $y_{17}$. This diagnostic combines noise and any structure attenuated by smoothing; it is not a calibrated experimental uncertainty.}
-% BEGIN GENERATED window_quality
-\begin{tabular}{lrrr}
-\toprule
-Window / \si{cm^{-1}} & Points & Fluctuation RMS / a.u. & Relative fluctuation \\
-\midrule
-3000--3200 & 237 & 0.1380 & 0.451 \\
-3200--3300 & 116 & 0.0359 & 0.610 \\
-3300--3800 & 557 & 0.0104 & 0.044 \\
-3400--3800 & 443 & 0.0064 & 0.027 \\
-3350--3700 & 392 & 0.0088 & 0.040 \\
-\bottomrule
-\end{tabular}
-% END GENERATED window_quality
-\label{tab:quality}
-\end{table}
-
-The \SIrange{3300}{3800}{cm^{-1}} window retains more of the bonded-OH response than \SIrange{3400}{3800}{cm^{-1}}, while avoiding the larger relative fluctuations at the lower edge. The wider \SIrange{3200}{3800}{cm^{-1}} interval and the narrower \SIrange{3350}{3700}{cm^{-1}} interval test sensitivity to these choices. Neither the diagnostics nor a high $R^2$ establish a unique physically correct window.
-
-\section{Fingerprint Extraction and Frequency Calibration}
-The molecular dictionary is taken from the total imaginary \sfg panels of the reference \waterair calculation.\cite{Kaliannan2026Rosetta} Its eight motifs are extracted from the magenta Total curves in \path{SFG_A.eps}, \path{SFG_B.eps}, and \path{SFG_L2.eps}. The code reads the vector paths, discards the repeated filled-polygon path and its artificial closing segments, and averages duplicate frequency coordinates. It uses the explicit horizontal zero line in each panel; no baseline is inferred from the curve tails.
-
-In the Total column of each source EPS file, the labeled \SI{3000}{cm^{-1}} and \SI{3800}{cm^{-1}} ticks have horizontal coordinates 3057 and 4110. A path coordinate $X$ is converted using
-\begin{equation}
- \nu(X)=3000+\frac{800(X-3057)}{4110-3057}\quad\si{cm^{-1}}.
- \label{eq:calibration}
-\end{equation}
-The paths themselves extend approximately from \SI{2899.7}{cm^{-1}} to \SI{3900.3}{cm^{-1}}. Mapping their endpoints to \SI{3000}{cm^{-1}} and \SI{3800}{cm^{-1}} would compress the frequency scale by about 20\%, changing both band positions and widths. The corrected motif-I maximum is near \SI{3660.2}{cm^{-1}}. Finite coordinate precision in the source EPS files limits the precision of the extracted curves, and access to the original numerical simulation spectra would permit a more accurate transfer.
+The source file contains 1600 frequency points. Of these, 1578 are finite. The 22 nonfinite values occur between \SI{2674.4}{cm^{-1}} and \SI{2883.5}{cm^{-1}}, outside the structural OH-stretch window used for the Rosetta-stone fits. The trace is finite throughout all windows from \SI{3000}{cm^{-1}} upward.
 
 \begin{table}[H]
-\centering\small
-\caption{Source panels and explicit EPS zero-line coordinates. Vertical amplitudes are arbitrary and subsequently normalized. }
-% BEGIN GENERATED calibration
-\begin{tabular}{llr}
+\centering
+\caption{Data-internal window-choice diagnostics for the experimental trace. The raw-minus-smoothed RMS is computed from the finite raw trace and the 17-point smoothed trace. The relative point-noise estimate is this RMS divided by the local peak-to-peak amplitude of the smoothed trace.}
+\begin{tabular}{lcccc}
 \toprule
-Motif & Source EPS & Zero coordinate \\
+window / \si{cm^{-1}} & role & points & RMS / a.u. & relative noise \\
 \midrule
-I & SFG\_A.eps & 876 \\
-II & SFG\_B.eps & 7602 \\
-III & SFG\_B.eps & 6047 \\
-IV & SFG\_B.eps & 4492 \\
-V & SFG\_B.eps & 2937 \\
-VI & SFG\_B.eps & 1296 \\
-VII & SFG\_L2.eps & 2881 \\
-VIII & SFG\_L2.eps & 1168 \\
+3000--3200 & low-frequency noisy region & 237 & 0.1380 & 0.451 \\
+3200--3300 & low-edge noise caution & 116 & 0.0359 & 0.610 \\
+3300--3800 & primary OH-transfer window & 557 & 0.0104 & 0.044 \\
+3400--3800 & high-frequency control & 443 & 0.0064 & 0.027 \\
+3350--3700 & narrow peak-shape control & 392 & 0.0088 & 0.040 \\
 \bottomrule
 \end{tabular}
-% END GENERATED calibration
 \end{table}
 
-\section{Constrained Spectral Fit}
-For a selected window and common shift $\Delta$, each fingerprint is linearly interpolated onto the experimental grid and RMS normalized:
-\begin{equation}
- \widehat f_j(\nu_i;\Delta)=\frac{f_j(\nu_i-\Delta)}{\sqrt{N^{-1}\sum_{i=1}^{N}f_j(\nu_i-\Delta)^2}}.
-\end{equation}
-Interpolation outside the source support returns zero, although the reported windows and \SI{\pm20}{cm^{-1}} shift range remain within that support. The fitted model is
-\begin{equation}
- y_{\rm fit}(\nu_i)=b_0+b_1\frac{\nu_i-\overline\nu}{\nu_{\max}-\nu_{\min}}
- +\sigma\sum_{j\in\mathcal M}w_j\widehat f_j(\nu_i;\Delta),\qquad w_j\geq0.
-\end{equation}
-The two background coefficients are unconstrained. The sign $\sigma=\pm1$ is tested globally, and $\Delta$ is scanned in \SI{1}{cm^{-1}} steps between $-20$ and $+20$~\si{cm^{-1}}. Each model and control undergoes the same optimization. The reported solution has the smallest residual sum of squares (SSE).
+The \SIrange{3300}{3800}{cm^{-1}} window is therefore a compromise rather than a fitted convenience. It avoids the high relative point noise at the low edge, while retaining more of the bonded-OH response than the \SIrange{3400}{3800}{cm^{-1}} high-frequency control. The \SIrange{3200}{3800}{cm^{-1}} window is retained as a diagnostic control because it tests how strongly the fit responds to the noisier lower edge. In this sense, the primary OH-transfer window is selected by the measured trace and by structural discriminability, not by imposing the silica/water interpretation of Cyran \textit{et al.}
 
-The solver projects out the two background columns and examines every active subset of the allowed motifs, including the empty subset. Negative least-squares coefficients are rejected for that subset; zero coefficients and lower-dimensional boundaries remain feasible. The final solution is checked against the nonnegative least-squares optimality conditions. Allowing an additional motif can therefore preserve or decrease SSE, but cannot worsen it. This check detects the earlier error of retaining only strictly positive interior solutions.
-
-The descriptive coefficient of determination is $R^2=1-\mathrm{SSE}/\sum_i(y_i-\overline y)^2$. The tabulated spectral fraction is $w_j/\sum_k w_k$ and depends on RMS normalization over the selected window. It is not a molecular population. Conventional F-test probabilities and information-criterion rankings are not used because smoothed points are correlated, shifts and motif sets are optimized, and coefficients can lie on constraint boundaries. The data archive provides neither replicate-based uncertainty nor a noise covariance model.
-
-\section{Candidate Models and Active Coefficients}
-\begin{table}[H]
-\centering\small
-\caption{Selected calibrated fits at 17-point averaging. ``Allowed'' identifies the tested basis; ``active'' lists coefficients greater than $10^{-9}$. All displayed fits have global sign $+1$. SSE is in squared response units.}
-% BEGIN GENERATED candidates
-\begin{tabular}{lllrrr}
-\toprule
-Window / \si{cm^{-1}} & Allowed & Active & $R^2$ & SSE & $\Delta$ / \si{cm^{-1}} \\
-\midrule
-3300--3800 & I+VIII & I+VIII & 0.991811 & 0.033767 & -5 \\
-3300--3800 & VI+VIII & VIII & 0.991799 & 0.033814 & -5 \\
-3300--3800 & I+II+VIII & I+VIII & 0.991811 & 0.033767 & -5 \\
-3300--3800 & I+VI+VIII & I+VIII & 0.991811 & 0.033767 & -5 \\
-3300--3800 & I+II+VI+VIII & I+VIII & 0.991811 & 0.033767 & -5 \\
-3300--3800 & I+VI+VII & VI & 0.954514 & 0.187556 & -20 \\
-3300--3800 & I+VI+VII+VIII & VII+VIII & 0.991971 & 0.033107 & -8 \\
-3400--3800 & I+VIII & I+VIII & 0.997986 & 0.006313 & -3 \\
-3400--3800 & I+VI+VIII & I+VI+VIII & 0.997989 & 0.006302 & -3 \\
-3400--3800 & I+IV+VI+VIII & I+VI+VIII & 0.997989 & 0.006302 & -3 \\
-3400--3800 & I+VI+VII+VIII & I+VI+VIII & 0.997989 & 0.006302 & -3 \\
-3200--3800 & I+VI+VIII & VI+VIII & 0.978847 & 0.123989 & -20 \\
-3200--3800 & I+VI+VII+VIII & VII+VIII & 0.986648 & 0.078263 & -13 \\
-\bottomrule
-\end{tabular}
-% END GENERATED candidates
-\label{tab:candidates}
-\end{table}
-
-In the primary window, I+VI+VIII reduces to I+VIII, and adding II or IV leaves this solution unchanged. The four-motif I+VI+VII+VIII control reduces to VII+VIII and gives a slightly smaller SSE. Thus the small motif-I coefficient is not robust to allowing the oppositely oriented VII fingerprint. In the \SIrange{3400}{3800}{cm^{-1}} control, motif I has a larger coefficient and VI is small; adding VI improves $R^2$ by only about $3.6\times10^{-6}$. These comparisons support an VIII-like bonded-water contribution within the transferred dictionary, while limiting claims about a weak-OH population or a specific connector.
+\section*{Primary Model and Four-Motif Control}
 
 \begin{table}[H]
-\centering\small
-\caption{Coefficients and RMS spectral fractions of the I+VI+VIII candidate and its four-motif control. Zero coefficients are retained to show boundary solutions.}
-% BEGIN GENERATED weights
-\begin{tabular}{lllrr}
+\centering
+\caption{Primary model selection in the \SIrange{3300}{3800}{cm^{-1}} window using 17-point smoothing and a conservative global shift range of \SI{\pm20}{cm^{-1}}.}
+\begin{tabular}{lcccccc}
 \toprule
-Window / \si{cm^{-1}} & Allowed & Motif & Weight & RMS fraction \\
+model & active motifs & $R^2$ & SSE & shift / \si{cm^{-1}} & sign & BIC \\
 \midrule
-3300--3800 & I+VI+VIII & I & 0.000561 & 0.0052 \\
-3300--3800 & I+VI+VIII & VI & 0.000000 & 0.0000 \\
-3300--3800 & I+VI+VIII & VIII & 0.107246 & 0.9948 \\
-3300--3800 & I+VI+VII+VIII & I & 0.000000 & 0.0000 \\
-3300--3800 & I+VI+VII+VIII & VI & 0.000000 & 0.0000 \\
-3300--3800 & I+VI+VII+VIII & VII & 0.011008 & 0.0924 \\
-3300--3800 & I+VI+VII+VIII & VIII & 0.108096 & 0.9076 \\
-3400--3800 & I+VI+VIII & I & 0.016259 & 0.0902 \\
-3400--3800 & I+VI+VIII & VI & 0.000965 & 0.0054 \\
-3400--3800 & I+VI+VIII & VIII & 0.163083 & 0.9045 \\
-3400--3800 & I+VI+VII+VIII & I & 0.016259 & 0.0902 \\
-3400--3800 & I+VI+VII+VIII & VI & 0.000965 & 0.0054 \\
-3400--3800 & I+VI+VII+VIII & VII & 0.000000 & 0.0000 \\
-3400--3800 & I+VI+VII+VIII & VIII & 0.163083 & 0.9045 \\
+primary three-motif & I+VI+VIII & 0.995350 & 0.019173 & +4 & +1 & -5692.6 \\
+four-motif control & I+VI+VII+VIII & 0.995433 & 0.018829 & +2 & +1 & -5696.3 \\
 \bottomrule
 \end{tabular}
-% END GENERATED weights
 \end{table}
+
+The four-motif control gives a slightly smaller residual, but the numerical gain is small relative to the physical cost of adding another L3 motif. The main text therefore uses I+VI+VIII as the parsimonious three-motif structural model and discusses VII as a symmetry-related/near-degenerate admixture that cannot be uniquely excluded.
+
+\begin{table}[H]
+\centering
+\caption{RMS-normalized fingerprint fractions for the primary I+VI+VIII fit. These values are spectral weights, not molecular populations.}
+\begin{tabular}{llcc}
+\toprule
+motif & role & nonnegative weight & RMS fraction \\
+\midrule
+I & L1 weak/free-OH marker & 0.002610 & 0.0234 \\
+VI & L2 bridge-family connector & 0.021721 & 0.1948 \\
+VIII & L3 bonded-water response & 0.087150 & 0.7817 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section*{Direct L3 VII/VIII Control}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.94\textwidth]{figS2_l3_controls}
-\caption{Direct L3 controls in \SIrange{3300}{3800}{cm^{-1}}: (a) fitted responses and (b) residuals. Legend labels denote allowed motif sets. I+VI+VII has only VI active, whereas I+VI+VIII and I+VI+VII+VIII reduce to I+VIII and VII+VIII, respectively. The VIII-free solution reaches the lower shift boundary, so its optimum is conditional on the stated search range.}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=\textwidth]{figS3_candidate_fits}
-\caption{Calibrated candidate fits in four analysis windows. Legend labels indicate allowed motifs. The similar curves and changing active coefficients demonstrate window dependence and structural nonuniqueness. The machine-readable comparison includes zero-weight boundary solutions.}
-\end{figure}
-
-An additional scan evaluates all 92 one-, two-, and three-motif subsets of the eight-member dictionary, without imposing an L1--L3 sequence, in the \SIrange{3300}{3800}{cm^{-1}} and \SIrange{3400}{3800}{cm^{-1}} windows. In the primary window, the best active set among these subsets is VII+VIII. In the higher-frequency window, I+VI+VIII gives the smallest SSE, but I+IV+VIII and I+VIII are nearly equivalent. The scan is a comparison within this digitized basis and shift range, not a proof of a unique microscopic structure.
-
-\section{Smoothing and Window Sensitivity}
-\begin{figure}[H]
-\centering
-\includegraphics[width=\textwidth]{figS4_sensitivity}
-\caption{Sensitivity of the allowed motif sets. (a) $R^2$ versus moving-average width in \SIrange{3300}{3800}{cm^{-1}}. (b) Window dependence at 17-point averaging. Good line-shape agreement persists under smoothing, while changes between windows remain appreciable.}
+\includegraphics[width=0.92\textwidth]{figS_new_l3_vii_viii_control}
+\caption{Direct L3-control fits in the primary physically interpretable \SIrange{3300}{3800}{cm^{-1}} OH-transfer window. A VII-only L3 substitution gives a substantially poorer fit, whereas adding VII to I+VI+VIII gives only a very small visual and numerical change.}
 \end{figure}
 
 \begin{table}[H]
-\centering\small
-\caption{$R^2$ of the I+VI+VIII candidate across smoothing widths. In the primary window, VI is inactive at every displayed width.}
-% BEGIN GENERATED smoothing
-\begin{tabular}{lrrrrrr}
+\centering
+\caption{Direct VII/VIII control in the primary physically interpretable \SIrange{3300}{3800}{cm^{-1}} OH-transfer window. The I+VI+VII fit collapses to a VI-only solution within the nonnegative least-squares constraint, whereas the I+VI+VIII and I+VI+VII+VIII fits are nearly indistinguishable.}
+\begin{tabular}{lccccc}
 \toprule
-Window / \si{cm^{-1}} & 1 pt & 7 pt & 11 pt & 17 pt & 25 pt & 33 pt \\
+model & active motifs & $R^2$ & SSE & shift / \si{cm^{-1}} & BIC \\
 \midrule
-3300--3800 & 0.977643 & 0.990662 & 0.991282 & 0.991811 & 0.992180 & 0.992605 \\
-3400--3800 & 0.992005 & 0.997256 & 0.997669 & 0.997989 & 0.998125 & 0.998189 \\
+I+VI+VII & VI & 0.945677 & 0.223992 & -20 & -4323.4 \\
+I+VI+VIII & I+VI+VIII & 0.995350 & 0.019173 & +4 & -5692.6 \\
+I+VI+VII+VIII & I+VI+VII+VIII & 0.995433 & 0.018829 & +2 & -5696.3 \\
 \bottomrule
 \end{tabular}
-% END GENERATED smoothing
 \end{table}
 
-The corresponding fits to the unsmoothed trace give $R^2=0.9776$ and 0.9920 for the primary and higher-frequency windows, respectively. Smoothing raises these descriptive values by suppressing rapid fluctuations. It does not supply independent measurements or eliminate the competing motif assignments.
+This control does not prove that the microscopic L3 population is purely motif VIII. It shows that the dominant L3 response is assigned to motif VIII, while motif VII remains a symmetry-related/near-degenerate admixture that cannot be uniquely excluded from the one-dimensional SFG trace. Azimuthal mirror variants of a motif are likewise not expected to be cleanly resolved unless they change the OH orientation relative to the surface normal.
 
-\section{Structural Scope and Reproducibility}
-The schematic groups L1--L3 are distinct from the reference instantaneous-layer labels: L1 and L2 of the silica/water schematic correspond to regions A and B of the reference topmost layer, and schematic L3 corresponds to its second layer. No metric distances or individual hydrogen bonds are inferred from the fit. VII and VIII have different polar orientations and partially opposing fingerprints; they are not merely azimuthal mirror images. The I--VI--VIII geometry in main-text Fig.~4 is an illustrative hypothesis, since VI has zero coefficient in the calibrated primary-window fit.
+\section*{Exact Motif Candidate Fits}
 
-The public repository,
-\begin{center}\small\url{https://github.com/DCM-Uni-Paderborn/sio2-water-sfg-rosetta}\end{center}
-includes the following input files and generated records. Run \path{digitize_fingerprints.py}, \path{analyze_current_trace.py}, and \path{make_manuscript_figures.py} from the repository root. Then run \path{make_supplementary_tables.py} to refresh the numerical tables from the CSV results.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{figS_new_exact_motif_candidate_fits}
+\caption{Selected exact motif fits in several spectral windows. The I+VI+VIII and I+VI+VII+VIII models are nearly indistinguishable in the primary physically interpretable \SIrange{3300}{3800}{cm^{-1}} OH-transfer window. In narrower high-frequency windows, several models can reach very high $R^2$, illustrating the underdetermined character of the inversion.}
+\end{figure}
 
-\begin{longtable}{p{0.54\textwidth}p{0.39\textwidth}}
-\caption{Files required to reproduce the manuscript. Generated numerical records are stored in the analysis directory.}\\
-\toprule File or directory & Contents \\
-\midrule\endfirsthead
-\toprule File or directory & Contents \\
-\midrule\endhead
-\path{newest_data/heat2_fud.txt}, \path{newest_data/xaxis_fud.txt} & Original response and frequency axis.\\
-\path{SFG_Structure/} & Source EPS Total curves and orientation panels.\\
-\path{paper_sfg_fingerprints_digitized.csv}, \path{fingerprint_calibration.csv} & Calibrated basis and source-axis coordinates.\\
-\path{newest_trace_processed.csv} & Original, finite-value mask, interpolated, and averaged traces.\\
-\path{newest_primary_3300_3800_I_VI_VIII_curve.csv}, \path{newest_primary_3300_3800_I_VI_VIII_weights.csv} & Primary candidate, background, residual, components, and coefficients.\\
-\path{newest_exact_motif_candidate_comparison.csv}, \path{newest_candidate_curves.csv} & Model comparisons and curves in each control window.\\
-\path{newest_all_model_weights.csv}, \path{newest_smoothing_window_sensitivity.csv} & Coefficients and fit quality across widths and windows.\\
-\path{newest_l3_vii_viii_control.csv}, \path{newest_l3_vii_viii_3300_3800_curves.csv} & Direct L3 comparisons and residuals.\\
-\path{newest_window_choice_summary.csv} & Raw-minus-smoothed window diagnostics.\\
-\path{dictionary_small_model_scan.csv} & All 92 dictionary subsets per tested window.\\
-\path{figures/}, \path{si_figures/}, \path{manuscript/} & Current figures and LaTeX sources.\\
+\begin{table}[H]
+\centering
+\caption{Exact motif-set selection for the two most relevant windows. The table reports fits with 17-point smoothing and a conservative shift range of \SI{\pm20}{cm^{-1}}.}
+\begin{tabular}{lccccc}
+\toprule
+window / \si{cm^{-1}} & active motifs & $R^2$ & SSE & shift / \si{cm^{-1}} & BIC \\
+\midrule
+3300--3800 & I+VI+VII+VIII & 0.995433 & 0.018829 & +2 & -5696.3 \\
+3300--3800 & I+VI+VIII & 0.995350 & 0.019173 & +4 & -5692.6 \\
+3300--3800 & I+II+VIII & 0.994655 & 0.022038 & +7 & -5615.0 \\
+3300--3800 & I+II+VI+VIII & 0.993007 & 0.028836 & -8 & -5458.9 \\
+\midrule
+3400--3800 & I+IV+VI+VIII & 0.996938 & 0.009599 & -5 & -4721.1 \\
+3400--3800 & I+VI+VIII & 0.996677 & 0.010414 & +2 & -4691.1 \\
+3400--3800 & I+II+VI+VIII & 0.996717 & 0.010291 & 0 & -4690.3 \\
+3400--3800 & I+II+VIII & 0.995552 & 0.013942 & +9 & -4561.8 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The \SIrange{3200}{3800}{cm^{-1}} window is useful diagnostically because it reveals low-edge sensitivity, while the \SIrange{3400}{3800}{cm^{-1}} high-frequency control can be fit very well by several related bridge-family models. This is why the main text emphasizes the \SIrange{3300}{3800}{cm^{-1}} primary physically interpretable OH-transfer window: it retains the high-frequency weak-OH region and the bonded OH response while avoiding the noisier low edge. Within that window, the I+VI+VIII model is the parsimonious three-motif interpretation, and motif VI is the preferred bridge-family connector.
+
+\section*{Smoothing and Window Robustness}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.96\textwidth]{figS_new_window_smoothing_robustness}
+\caption{Robustness of selected model classes. (a) $R^2$ in the primary physically interpretable \SIrange{3300}{3800}{cm^{-1}} OH-transfer window as a function of moving-average width. (b) Window dependence at 17-point smoothing. The \SIrange{3200}{3800}{cm^{-1}} window is diagnostic for low-edge sensitivity, while the very high $R^2$ values in narrower or higher-frequency windows illustrate why window variation is a diagnostic for underdetermination rather than a route to a unique structure.}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\caption{$R^2$ of the I+VI+VIII primary model as a function of smoothing window. The 17-point value is used in the main text.}
+\begin{tabular}{lcccccc}
+\toprule
+fit window / \si{cm^{-1}} & 1 pt & 7 pt & 11 pt & 17 pt & 25 pt & 33 pt \\
+\midrule
+3300--3800 & 0.981067 & 0.994246 & 0.994852 & 0.995350 & 0.995685 & 0.996023 \\
+3400--3800 & 0.990688 & 0.995927 & 0.996348 & 0.996677 & 0.996847 & 0.996977 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{$R^2$ robustness for selected competing models in the primary physically interpretable \SIrange{3300}{3800}{cm^{-1}} OH-transfer window.}
+\begin{tabular}{lcccccc}
+\toprule
+model & 1 pt & 7 pt & 11 pt & 17 pt & 25 pt & 33 pt \\
+\midrule
+I+VI+VIII & 0.981067 & 0.994246 & 0.994852 & 0.995350 & 0.995685 & 0.996023 \\
+I+VI+VII+VIII & 0.981112 & 0.994336 & 0.994939 & 0.995433 & 0.995772 & 0.996101 \\
+I+II+VIII & 0.980364 & 0.993538 & 0.994147 & 0.994655 & 0.995008 & 0.995365 \\
+I+II+VI+VIII & 0.979213 & 0.991913 & 0.992516 & 0.993007 & 0.993307 & 0.994020 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The smoothing test shows that the qualitative conclusion is not a consequence of choosing exactly 17 points. The no-smoothing fits are lower because the raw trace contains high-frequency point noise, especially near the low edge. For all tested smoothing windows from 7 to 33 points, the I+VI+VIII and I+VI+VII+VIII models remain the strongest candidates in the primary OH-transfer window.
+
+\section*{Machine-Readable Files}
+
+The local project contains the numerical data used in this draft:
+
+\begin{longtable}{p{0.36\textwidth}p{0.55\textwidth}}
+\caption{Core numerical records for the analysis.}\\
+\toprule
+record & contents \\
+\midrule
+\endfirsthead
+\toprule
+record & contents \\
+\midrule
+\endhead
+experimental trace & Frequency axis and measured response channel. \\
+processed trace & Raw, interpolated, and smoothed forms of the trace. \\
+primary fit curve & I+VI+VIII fit curve, baseline, residual, and component curves. \\
+primary weights & Nonnegative weights and RMS fractions for the primary model. \\
+model-selection diagnostics & Three-motif model, four-motif control, and candidate-model sensitivity. \\
+window diagnostics & Data-internal window-quality diagnostics, including raw-minus-smoothed RMS values. \\
+L3 controls & Fit and residual curves for direct VII/VIII controls in the primary OH-transfer window. \\
+fingerprint basis & Digitized water--air Rosetta-stone fingerprints used as structural basis functions. \\
 \bottomrule
 \end{longtable}
 
-\bibliographystyle{unsrt}
-\bibliography{references}
 \end{document}
